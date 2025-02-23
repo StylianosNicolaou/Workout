@@ -2,8 +2,78 @@
 <html>
   <head>
     <title>Workout</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        color: pink;
+        text-align: center;
+        margin-top: 50px;
+        text-transform: uppercase;
+      }
+
+      .container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .exercise-list {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .exercise-item {
+        background-color: #fff;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+      }
+
+      .exercise-item input[type="checkbox"] {
+        margin-right: 10px;
+      }
+
+      .exercise-item h2 {
+        margin: 0;
+        color: #333;
+        flex-grow: 1;
+      }
+
+      .exercise-item p {
+        color: #666;
+      }
+    </style>
   </head>
   <body>
     <h1>This is a workout website</h1>
+    <div class="container">
+      <h2>Today's Workout Plan</h2>
+      <ul class="exercise-list">
+        <li class="exercise-item">
+          <input type="checkbox" id="push-ups" />
+          <h2>Push-ups</h2>
+          <p>10 reps, 3 sets</p>
+        </li>
+        <li class="exercise-item">
+          <input type="checkbox" id="squats" />
+          <h2>Squats</h2>
+          <p>15 reps, 3 sets</p>
+        </li>
+        <li class="exercise-item">
+          <input type="checkbox" id="plank" />
+          <h2>Plank</h2>
+          <p>Hold for 1 minute, 3 sets</p>
+        </li>
+      </ul>
+    </div>
   </body>
 </html>
