@@ -11,7 +11,7 @@
       }
 
       h1 {
-        color: pink;
+        color: hotpink;
         text-align: center;
         margin-top: 50px;
         text-transform: uppercase;
@@ -24,6 +24,7 @@
       }
 
       h2 {
+        color: pink;
         text-align: center;
         color: #333;
       }
@@ -78,12 +79,8 @@
       }
 
       /* Styling for completed exercises */
-      .exercise-item input[type="checkbox"]:checked + h2 {
+      .exercise-item.checked h2 {
         text-decoration: line-through;
-        color: #8c8c8c;
-      }
-
-      .exercise-item input[type="checkbox"]:checked + h2 + p {
         color: #8c8c8c;
       }
 
@@ -98,12 +95,7 @@
     <div class="container">
       <h2>LEG DAY WORKOUT</h2>
       <ul class="exercise-list">
-        <li class="exercise-item">
-          <input type="checkbox" id="warm-up" />
-          <h2>Warm-up</h2>
-          <p>5 mins</p>
-        </li>
-        <li class="exercise-item">
+        <li class="exercise-item" id="leg-extensions-item">
           <h2>Leg Extensions</h2>
           <p>3 sets, 12-15 reps</p>
           <ul class="sub-exercise-list">
@@ -121,7 +113,7 @@
             </li>
           </ul>
         </li>
-        <li class="exercise-item">
+        <li class="exercise-item" id="leg-curls-item">
           <h2>Leg Curls</h2>
           <p>3 sets, 12-15 reps</p>
           <ul class="sub-exercise-list">
@@ -141,5 +133,78 @@
         </li>
       </ul>
     </div>
+
+    <script>
+      // Function to check if all checkboxes in an exercise are checked
+      function checkAllSubCheckboxes(exerciseId, subCheckboxIds) {
+        const exerciseItem = document.getElementById(exerciseId);
+        const subCheckboxes = subCheckboxIds.map(id => document.getElementById(id));
+
+        const allChecked = subCheckboxes.every(checkbox => checkbox.checked);
+        if (allChecked) {
+          exerciseItem.classList.add('checked');
+        } else {
+          exerciseItem.classList.remove('checked');
+        }
+      }
+
+      // Event listeners for all the sub-checkboxes to check the main exercise
+      document.querySelectorAll('.sub-exercise-item input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          // Check Leg Extensions
+          checkAllSubCheckboxes('leg-extensions-item', [
+            'leg-extensions-set-1',
+            'leg-extensions-set-2',
+            'leg-extensions-set-3'
+          ]);
+
+          // Check Leg Curls
+          checkAllSubCheckboxes('leg-curls-item', [
+            'leg-curls-set-1',
+            'leg-curls-set-2',
+            'leg-curls-set-3'
+          ]);
+        });
+      });
+
+      // Event listeners for the main exercise checkboxes (Leg Extensions and Leg Curls)
+      document.getElementById('leg-extensions').addEventListener('change', (event) => {
+        if (event.target.checked) {
+          // Check all sub-checkboxes when the main checkbox is checked
+          document.getElementById('leg-extensions-set-1').checked = true;
+          document.getElementById('leg-extensions-set-2').checked = true;
+          document.getElementById('leg-extensions-set-3').checked = true;
+        } else {
+          // Uncheck all sub-checkboxes when the main checkbox is unchecked
+          document.getElementById('leg-extensions-set-1').checked = false;
+          document.getElementById('leg-extensions-set-2').checked = false;
+          document.getElementById('leg-extensions-set-3').checked = false;
+        }
+        checkAllSubCheckboxes('leg-extensions-item', [
+          'leg-extensions-set-1',
+          'leg-extensions-set-2',
+          'leg-extensions-set-3'
+        ]);
+      });
+
+      document.getElementById('leg-curls').addEventListener('change', (event) => {
+        if (event.target.checked) {
+          // Check all sub-checkboxes when the main checkbox is checked
+          document.getElementById('leg-curls-set-1').checked = true;
+          document.getElementById('leg-curls-set-2').checked = true;
+          document.getElementById('leg-curls-set-3').checked = true;
+        } else {
+          // Uncheck all sub-checkboxes when the main checkbox is unchecked
+          document.getElementById('leg-curls-set-1').checked = false;
+          document.getElementById('leg-curls-set-2').checked = false;
+          document.getElementById('leg-curls-set-3').checked = false;
+        }
+        checkAllSubCheckboxes('leg-curls-item', [
+          'leg-curls-set-1',
+          'leg-curls-set-2',
+          'leg-curls-set-3'
+        ]);
+      });
+    </script>
   </body>
 </html>
