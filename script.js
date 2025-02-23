@@ -18,9 +18,8 @@ function updateStrikeThrough(exerciseSection) {
 }
 
 // Attach event listeners to checkboxes
-const sections = document.querySelectorAll(".section");
 
-sections.forEach((section) => {
+document.querySelectorAll(".section").forEach((section) => {
   const checkboxes = section.querySelectorAll('input[type="checkbox"]');
   checkboxes.forEach((checkbox) => {
     checkbox.addEventListener("change", () => updateStrikeThrough(section));
@@ -49,7 +48,7 @@ function updateStrikeThrough(exerciseSection) {
 // Attach event listeners to checkboxes
 const sections = document.querySelectorAll(".section");
 
-sections.forEach((section) => {
+document.querySelectorAll(".section").forEach((section) => {
   const checkboxes = section.querySelectorAll('input[type="checkbox"]');
   checkboxes.forEach((checkbox) => {
     checkbox.addEventListener("change", () => updateStrikeThrough(section));

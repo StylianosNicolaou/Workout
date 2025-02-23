@@ -7,13 +7,29 @@ body {
   justify-content: space-around;
 }
 
-h1 {
+#tit {
+  position: absolute;
+  left: 10px; /* Adjust left position */
+  top: 90%;
+  transform: translateY(-50%) rotate(-90deg); /* Rotates without breaking */
+  transform-origin: left top;
+  font-weight: bold;
+  font-size: 60px; /* Adjust size */
+  color: #d78aff; /* Light purple-pink */
+  white-space: nowrap; /* Prevents text from breaking */
+  letter-spacing: 5px; /* Adds space between letters */
+  text-transform: uppercase; /* Makes sure all letters are capital */
   color: rgb(179, 10, 179);
   text-align: center;
   margin-top: 50px;
   text-transform: uppercase;
 }
 
+h1 {
+  color: rgb(179, 10, 179);
+  margin-top: 50px;
+  text-transform: uppercase;
+}
 .section {
   width: 45%;
   margin: 20px;
