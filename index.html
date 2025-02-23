@@ -23,6 +23,11 @@
         padding: 20px;
       }
 
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+
       .exercise-list {
         list-style-type: none;
         padding: 0;
@@ -30,16 +35,24 @@
 
       .exercise-item {
         background-color: #fff;
-        margin: 10px 0;
-        padding: 10px;
+        margin: 15px 0;
+        padding: 15px;
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         display: flex;
         align-items: center;
+        transition: background-color 0.3s ease;
+        flex-direction: column;
+      }
+
+      .exercise-item:hover {
+        background-color: #f1f1f1;
       }
 
       .exercise-item input[type="checkbox"] {
-        margin-right: 10px;
+        margin-right: 15px;
+        width: 20px;
+        height: 20px;
       }
 
       .exercise-item h2 {
@@ -51,6 +64,33 @@
       .exercise-item p {
         color: #666;
       }
+
+      .sub-exercise-list {
+        margin-top: 10px;
+        margin-left: 20px;
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .sub-exercise-item {
+        display: flex;
+        align-items: center;
+      }
+
+      /* Styling for completed exercises */
+      .exercise-item input[type="checkbox"]:checked + h2 {
+        text-decoration: line-through;
+        color: #8c8c8c;
+      }
+
+      .exercise-item input[type="checkbox"]:checked + h2 + p {
+        color: #8c8c8c;
+      }
+
+      .sub-exercise-item input[type="checkbox"]:checked + span {
+        text-decoration: line-through;
+        color: #8c8c8c;
+      }
     </style>
   </head>
   <body>
@@ -59,19 +99,45 @@
       <h2>LEG DAY WORKOUT</h2>
       <ul class="exercise-list">
         <li class="exercise-item">
-          <input type="checkbox" id="push-ups" />
+          <input type="checkbox" id="warm-up" />
           <h2>Warm-up</h2>
           <p>5 mins</p>
         </li>
         <li class="exercise-item">
-          <input type="checkbox" id="squats" />
           <h2>Leg Extensions</h2>
           <p>3 sets, 12-15 reps</p>
+          <ul class="sub-exercise-list">
+            <li class="sub-exercise-item">
+              <input type="checkbox" id="leg-extensions-set-1" />
+              <span>Set 1: 12-15 reps</span>
+            </li>
+            <li class="sub-exercise-item">
+              <input type="checkbox" id="leg-extensions-set-2" />
+              <span>Set 2: 12-15 reps</span>
+            </li>
+            <li class="sub-exercise-item">
+              <input type="checkbox" id="leg-extensions-set-3" />
+              <span>Set 3: 12-15 reps</span>
+            </li>
+          </ul>
         </li>
         <li class="exercise-item">
-          <input type="checkbox" id="plank" />
-          <h2>Leg curls</h2>
+          <h2>Leg Curls</h2>
           <p>3 sets, 12-15 reps</p>
+          <ul class="sub-exercise-list">
+            <li class="sub-exercise-item">
+              <input type="checkbox" id="leg-curls-set-1" />
+              <span>Set 1: 12-15 reps</span>
+            </li>
+            <li class="sub-exercise-item">
+              <input type="checkbox" id="leg-curls-set-2" />
+              <span>Set 2: 12-15 reps</span>
+            </li>
+            <li class="sub-exercise-item">
+              <input type="checkbox" id="leg-curls-set-3" />
+              <span>Set 3: 12-15 reps</span>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
