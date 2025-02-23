@@ -1,0 +1,89 @@
+<style > body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+h1 {
+  color: rgb(179, 10, 179);
+  text-align: center;
+  margin-top: 50px;
+  text-transform: uppercase;
+}
+
+.section {
+  width: 45%;
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section#KK h2,
+.section#VV h2 {
+  text-align: center;
+  color: darkblue;
+  margin-bottom: 20px;
+}
+
+.section#KK {
+  background-color: lightblue;
+}
+
+.section#VV {
+  background-color: lightpink;
+}
+
+.exercise-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.exercise-item {
+  background-color: #fff;
+  margin: 15px 0;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  flex-direction: column;
+}
+
+.exercise-item:hover {
+  background-color: #f1f1f1;
+}
+
+.exercise-item input[type="checkbox"] {
+  margin-right: 15px;
+  width: 20px;
+  height: 20px;
+}
+
+.sub-exercise-list {
+  margin-top: 10px;
+  margin-left: 20px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.sub-exercise-item {
+  display: flex;
+  align-items: center;
+}
+
+/* Strike-through style */
+.exercise-item.strike-through h2 {
+  text-decoration: line-through;
+  color: #8c8c8c;
+}
+
+.sub-exercise-item input[type="checkbox"]:checked + span {
+  text-decoration: line-through;
+  color: #8c8c8c;
+}
