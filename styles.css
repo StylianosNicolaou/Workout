@@ -1,51 +1,71 @@
+/* General Styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
   margin: 0;
-  padding: 0;
+  padding: 20px;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
 }
 
+/* Rotated Gym Title */
 #tit {
-  position: absolute;
-  left: 10px; /* Adjust left position */
-  top: 90%;
-  transform: translateY(-50%) rotate(-90deg); /* Rotates without breaking */
+  position: fixed;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
   transform-origin: left top;
   font-weight: bold;
-  font-size: 60px; /* Adjust size */
-  color: darkblue; /* Light purple-pink */
-  white-space: nowrap; /* Prevents text from breaking */
-  letter-spacing: 5px; /* Adds space between letters */
-  text-transform: uppercase; /* Makes sure all letters are capital */
+  font-size: 6vh;
   color: darkblue;
+  white-space: nowrap;
+  letter-spacing: 5px;
+  text-transform: uppercase;
   text-align: center;
   margin-top: 50px;
-  text-transform: uppercase;
+  z-index: 1;
+  max-width: 100vh;
+  line-height: 1.2;
 }
 
+/* Main Heading */
 h1 {
   color: hotpink;
-  margin-top: 50px;
+  margin-top: 20px;
   text-transform: uppercase;
+  font-size: 2.5rem;
 }
+
+/* ✅ Responsive Grid for Sections (Always 2 per Row) */
+.section-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Ensures 2 per row */
+  gap: 20px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+/* Section Box */
 .section {
-  width: 45%;
-  margin: 20px;
+  min-height: 400px;
   padding: 20px;
   background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.section#KK h2,
-.section#VV h2 {
-  text-align: center;
-  color: darkblue;
-  margin-bottom: 20px;
-}
-
+/* Section Backgrounds */
 .section#KK {
   background-color: lightblue;
 }
@@ -54,53 +74,94 @@ h1 {
   background-color: lightpink;
 }
 
+/* Section Headings */
+.section h2 {
+  text-align: center;
+  color: darkblue;
+  margin-bottom: 15px;
+  font-size: 1.6rem;
+}
+
+/* Exercise List */
 .exercise-list {
   list-style-type: none;
   padding: 0;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Exercise Items */
 .exercise-item {
   background-color: #fff;
-  margin: 15px 0;
+  width: 100%;
+  margin: 8px 0;
   padding: 15px;
-  border-radius: 5px;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
-  align-items: center;
-  transition: background-color 0.3s ease;
   flex-direction: column;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Hover Effect */
 .exercise-item:hover {
   background-color: #f1f1f1;
+  transform: scale(1.02);
 }
 
+/* Checkbox Styling */
 .exercise-item input[type="checkbox"] {
-  margin-right: 15px;
+  margin-right: 12px;
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
+/* Sub Exercise List */
 .sub-exercise-list {
-  margin-top: 10px;
-  margin-left: 20px;
-  list-style-type: none;
+  margin-top: 8px;
   padding: 0;
+  width: 100%;
+  list-style-type: none;
 }
 
+/* Sub Exercise Item */
 .sub-exercise-item {
   display: flex;
   align-items: center;
+  margin: 8px 0;
 }
 
+/* Strike-through for Completed Sections */
 .strike-through {
   text-decoration: line-through;
-  color: gray; /* Optional: Change color to indicate completion */
-  font-weight: normal; /* Optional: Make it visually distinct */
-  opacity: 0.7; /* Optional: Slightly fade it out */
+  color: gray;
+  font-weight: normal;
+  opacity: 0.7;
 }
 
-.sub-exercise-item input[type="checkbox"]:checked + span {
-  text-decoration: line-through;
-  color: #8c8c8c;
+/* ✅ Ensure 2 Sections Per Row on Mobile */
+@media (max-width: 600px) {
+  .section-container {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Force two columns even on small screens */
+  }
+}
+@media (min-width: 768px) {
+  /* Desktop */
+  #tit {
+    font-size: 6vh;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Mobile */
+  #tit {
+    font-size: 2vh;
+  }
 }
