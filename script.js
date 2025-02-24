@@ -1,6 +1,6 @@
 // Import Firebase SDKs
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, get, onValue } from "firebase/database";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 
 // ✅ Firebase Configuration
 const firebaseConfig = {
@@ -9,7 +9,7 @@ const firebaseConfig = {
   databaseURL:
     "https://liveworkouttracker-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "liveworkouttracker",
-  storageBucket: "liveworkouttracker.firebasestorage.app",
+  storageBucket: "liveworkouttracker.appspot.com",
   messagingSenderId: "608217186734",
   appId: "1:608217186734:web:c1eb261b47b0a9a163483f",
 };
@@ -19,22 +19,34 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const workoutRef = ref(db, "workoutProgress");
 
-// ✅ Function to update Firebase when checkbox is clicked
+// ✅ Function to update Firebase when a checkbox is clicked
 function saveExerciseState(exerciseId, isChecked) {
   set(ref(db, `workoutProgress/${exerciseId}`), isChecked);
 }
 
-// ✅ Function to update strike-through when all checkboxes in a section are checked
-function updateStrikeThrough(exerciseSection) {
-  const checkboxes = exerciseSection.querySelectorAll('input[type="checkbox"]');
-  const title = exerciseSection.querySelector("h2");
+// ✅ Function to update UI based on checkbox states
+function updateUI(snapshot) {
+  const data = snapshot.val();
+  if (!data) return;
 
-  // Check if all checkboxes are checked
-  const allChecked = Array.from(checkboxes).every(
-    (checkbox) => checkbox.checked
-  );
+  document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+    const exerciseId = checkbox.id;
+    if (data.hasOwnProperty(exerciseId)) {
+      checkbox.checked = data[exerciseId];
+    }
+  });
 
-  // Toggle strike-through class on title
+  // ✅ Update strike-through for all exercise sections
+  document.querySelectorAll(".exercise-item").forEach(updateStrikeThrough);
+}
+
+// ✅ Function to update strike-through on section titles
+function updateStrikeThrough(section) {
+  const checkboxes = section.querySelectorAll('input[type="checkbox"]');
+  const title = section.querySelector("h2");
+
+  // Check if all checkboxes in a section are checked
+  const allChecked = [...checkboxes].every((checkbox) => checkbox.checked);
   title.classList.toggle("strike-through", allChecked);
 }
 
@@ -45,25 +57,9 @@ document.querySelectorAll(".exercise-item").forEach((section) => {
 
     checkbox.addEventListener("change", () => {
       saveExerciseState(exerciseId, checkbox.checked);
-      updateStrikeThrough(section);
     });
   });
 });
 
-// ✅ Load saved checkbox states from Firebase
-onValue(workoutRef, (snapshot) => {
-  const data = snapshot.val();
-  if (data) {
-    document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
-      const exerciseId = checkbox.id;
-      if (data[exerciseId] !== undefined) {
-        checkbox.checked = data[exerciseId];
-      }
-    });
-
-    // ✅ Update strike-through after loading Firebase data
-    document
-      .querySelectorAll(".exercise-item")
-      .forEach((section) => updateStrikeThrough(section));
-  }
-});
+// ✅ Listen for real-time changes from Firebase
+onValue(workoutRef, updateUI);
