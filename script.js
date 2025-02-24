@@ -100,17 +100,31 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Function to reset the workout (uncheck all checkboxes)
-  function resetWorkout() {
-    //const confirmation = confirm("Are you sure you want to reset the workout?");
+  // ✅ Reset all workouts
+function resetWorkout() {
+  if (confirm("Are you sure you want to reset all workouts?")) {
+    // Reset all checkboxes in Firebase
+    workoutProgressRef.set({}, (error) => {
+      if (error) {
+        console.error("Error resetting workout progress:", error);
+      } else {
+        console.log("✅ Workout progress reset successfully");
 
-    //if (confirmation) {
-      // Get all checkboxes on the page and uncheck them
-      const checkboxes = document.querySelectorAll("input[type='checkbox']");
-      checkboxes.forEach(checkbox => {
-        checkbox.checked = false; // Uncheck the checkbox
-      });
-    //}
+        // Reset all checkboxes in the UI
+        document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+          checkbox.checked = false;
+          
+          // Remove strike-through from sets and exercises
+          const label = checkbox.nextElementSibling;
+          if (label) label.classList.remove("strike-through");
+
+          const exerciseItem = checkbox.closest(".exercise-item");
+          updateExerciseStrikeThrough(exerciseItem);
+        });
+      }
+    });
   }
+}
+
 
 });
