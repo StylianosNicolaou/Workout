@@ -102,15 +102,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to reset the workout (uncheck all checkboxes)
   function resetWorkout() {
-    const confirmation = confirm("Are you sure you want to reset the workout?");
+    //const confirmation = confirm("Are you sure you want to reset the workout?");
 
-    if (confirmation) {
+    //if (confirmation) {
       // Get all checkboxes on the page and uncheck them
       const checkboxes = document.querySelectorAll("input[type='checkbox']");
       checkboxes.forEach(checkbox => {
         checkbox.checked = false; // Uncheck the checkbox
       });
-    }
+    //}
   }
-  
+
 });

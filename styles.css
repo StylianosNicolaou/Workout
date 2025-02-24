@@ -165,3 +165,7 @@ h1 {
     font-size: 2vh;
   }
 }
+.reset-button
+{
+  color : red;
+}
