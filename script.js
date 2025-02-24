@@ -11,12 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
     appId: "1:608217186734:web:c1eb261b47b0a9a163483f",
   };
 
-  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
   const workoutProgressRef = db.ref("workoutProgress");
 
-  // Function to update Firebase when a checkbox is clicked
+  // ✅ Update Firebase when a checkbox is clicked
   function updateWorkoutProgress(checkbox) {
     const checkboxId = checkbox.id;
     const isChecked = checkbox.checked;
@@ -26,15 +25,15 @@ document.addEventListener("DOMContentLoaded", function () {
     workoutProgressRef.child(checkboxId).set(isChecked);
   }
 
-  // Attach event listeners to checkboxes
+  // ✅ Attach event listeners to checkboxes
   document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
     checkbox.addEventListener("change", () => updateWorkoutProgress(checkbox));
   });
 
-  // Listen for updates from Firebase
+  // ✅ Listen for updates from Firebase
   workoutProgressRef.on("value", (snapshot) => {
     const data = snapshot.val();
-    console.log("Firebase Data Updated:", data);
+    console.log("🔥 Firebase Data Updated:", data);
 
     if (data) {
       Object.keys(data).forEach((checkboxId) => {
