@@ -20,8 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const checkboxId = checkbox.id;
     const isChecked = checkbox.checked;
 
-    console.log(`Updating Firebase: ${checkboxId} -> ${isChecked}`);
+    console.log(`🔥 Updating Firebase: ${checkboxId} -> ${isChecked}`);
 
+    // Update Firebase in real time
     workoutProgressRef.child(checkboxId).set(isChecked);
   }
 
