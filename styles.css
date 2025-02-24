@@ -93,12 +93,20 @@ h1 {
   align-items: center;
 }
 
+.strike-through {
+  text-decoration: line-through;
+  color: gray; /* Optional: Change color to indicate completion */
+  font-weight: normal; /* Optional: Make it visually distinct */
+  opacity: 0.7; /* Optional: Slightly fade it out */
+}
+
 /* Strike-through style */
+/*
 .exercise-item.strike-through h2 {
   text-decoration: line-through;
   color: #8c8c8c;
 }
-
+*/
 .sub-exercise-item input[type="checkbox"]:checked + span {
   text-decoration: line-through;
   color: #8c8c8c;
