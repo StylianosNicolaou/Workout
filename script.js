@@ -24,6 +24,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Update Firebase in real time
     workoutProgressRef.child(checkboxId).set(isChecked);
+
+    // Apply strike-through effect to the individual set
+    const label = checkbox.nextElementSibling;
+    if (isChecked) {
+      label.classList.add("strike-through");
+    } else {
+      label.classList.remove("strike-through");
+    }
+
+    // Check if all checkboxes for the exercise are checked
+    const exerciseItem = checkbox.closest(".exercise-item");
+    updateExerciseStrikeThrough(exerciseItem);
+  }
+
+  // ✅ Check if all checkboxes of an exercise are checked and apply strike-through to exercise
+  function updateExerciseStrikeThrough(exerciseItem) {
+    const checkboxes = exerciseItem.querySelectorAll('input[type="checkbox"]');
+    const title = exerciseItem.querySelector("h2");
+
+    // Check if all checkboxes are checked
+    const allChecked = Array.from(checkboxes).every(
+      (checkbox) => checkbox.checked
+    );
+
+    // Toggle strike-through class on exercise title
+    if (allChecked) {
+      title.classList.add("strike-through");
+    } else {
+      title.classList.remove("strike-through");
+    }
   }
 
   // ✅ Attach event listeners to checkboxes
@@ -31,6 +61,16 @@ document.addEventListener("DOMContentLoaded", function () {
     checkbox.addEventListener("change", function () {
       updateWorkoutProgress(this);
     });
+
+    // Apply strike-through effect on page load for checked checkboxes
+    if (checkbox.checked) {
+      const label = checkbox.nextElementSibling;
+      label.classList.add("strike-through");
+    }
+
+    // Check if the exercise should be struck through on page load
+    const exerciseItem = checkbox.closest(".exercise-item");
+    updateExerciseStrikeThrough(exerciseItem);
   });
 
   // ✅ Listen for real-time updates from Firebase
@@ -43,6 +83,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const checkbox = document.getElementById(checkboxId);
         if (checkbox) {
           checkbox.checked = data[checkboxId];
+
+          // Apply or remove strike-through on individual set
+          const label = checkbox.nextElementSibling;
+          if (checkbox.checked) {
+            label.classList.add("strike-through");
+          } else {
+            label.classList.remove("strike-through");
+          }
+
+          // Check if exercise should be struck through
+          const exerciseItem = checkbox.closest(".exercise-item");
+          updateExerciseStrikeThrough(exerciseItem);
         }
       });
     }
