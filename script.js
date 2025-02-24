@@ -101,25 +101,64 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   window.resetWorkout = function () {
+    const confirmReset = confirm("Are you sure you want to reset all workouts?");
+    
+    if (!confirmReset) {
+      return; // If user cancels, do nothing
+    }
+  
     console.log("🧹 Resetting Workout...");
-
+  
     // Set all checkboxes to unchecked
     document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
       checkbox.checked = false;
-
+  
       // Remove strike-through from text
       const label = checkbox.nextElementSibling;
-      label.classList.remove("strike-through");
-
+      if (label) {
+        label.classList.remove("strike-through");
+      }
+  
       // Update Firebase (Set all values to false)
       workoutProgressRef.child(checkbox.id).set(false);
     });
-
+  
     // Remove strike-through from exercise titles
     document.querySelectorAll(".exercise-item h2").forEach((title) => {
       title.classList.remove("strike-through");
     });
-
+  
     console.log("✅ Workout Reset Successful");
   };
+  window.resetWorkout = function () {
+    const confirmReset = confirm("Are you sure you want to reset all workouts?");
+    
+    if (!confirmReset) {
+      return; // If user cancels, do nothing
+    }
+  
+    console.log("🧹 Resetting Workout...");
+  
+    // Set all checkboxes to unchecked
+    document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+      checkbox.checked = false;
+  
+      // Remove strike-through from text
+      const label = checkbox.nextElementSibling;
+      if (label) {
+        label.classList.remove("strike-through");
+      }
+  
+      // Update Firebase (Set all values to false)
+      workoutProgressRef.child(checkbox.id).set(false);
+    });
+  
+    // Remove strike-through from exercise titles
+    document.querySelectorAll(".exercise-item h2").forEach((title) => {
+      title.classList.remove("strike-through");
+    });
+  
+    console.log("✅ Workout Reset Successful");
+  };
+    
 });
