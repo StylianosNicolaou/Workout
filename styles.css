@@ -165,7 +165,27 @@ h1 {
     font-size: 2vh;
   }
 }
-.reset-button
-{
-  color : red;
+.reset-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: #ff4d4d; /* Red color to indicate reset action */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.reset-button:hover {
+  background-color: #cc0000;
+  transform: scale(1.05);
+}
+
+.reset-button:active {
+  transform: scale(0.95);
 }
