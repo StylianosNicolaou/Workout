@@ -101,32 +101,25 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   window.resetWorkout = function () {
-    if (confirm("Are you sure you want to reset all workouts?")) {
-      // Reset Firebase values to false for all checkboxes
-      const updates = {};
-      document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
-        updates[checkbox.id] = false;
-      });
+    console.log("🧹 Resetting Workout...");
 
-      workoutProgressRef.set(updates, (error) => {
-        if (error) {
-          console.error("❌ Error resetting workout progress:", error);
-        } else {
-          console.log("✅ Workout progress reset successfully");
+    // Set all checkboxes to unchecked
+    document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+      checkbox.checked = false;
 
-          // Reset UI checkboxes
-          document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
-            checkbox.checked = false;
+      // Remove strike-through from text
+      const label = checkbox.nextElementSibling;
+      label.classList.remove("strike-through");
 
-            // Remove strike-through from sets and exercises
-            const label = checkbox.nextElementSibling;
-            if (label) label.classList.remove("strike-through");
+      // Update Firebase (Set all values to false)
+      workoutProgressRef.child(checkbox.id).set(false);
+    });
 
-            const exerciseItem = checkbox.closest(".exercise-item");
-            updateExerciseStrikeThrough(exerciseItem);
-          });
-        }
-      });
-    }
+    // Remove strike-through from exercise titles
+    document.querySelectorAll(".exercise-item h2").forEach((title) => {
+      title.classList.remove("strike-through");
+    });
+
+    console.log("✅ Workout Reset Successful");
   };
 });
