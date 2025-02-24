@@ -1,0 +1,221 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+/* Rotated Gym Title */
+#tit {
+  position: fixed;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left top;
+  font-weight: bold;
+  font-size: 6vh;
+  color: darkblue;
+  white-space: nowrap;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 50px;
+  z-index: 1;
+  max-width: 100vh;
+  line-height: 1.2;
+}
+
+/* Main Heading */
+h1 {
+  color: hotpink;
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+}
+
+/* ✅ Responsive Grid for Sections (Always 2 per Row) */
+.section-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Ensures 2 per row */
+  gap: 20px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+/* Section Box */
+.section {
+  min-height: 400px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Section Backgrounds */
+.section#KK {
+  background-color: lightblue;
+}
+
+.section#VV {
+  background-color: lightpink;
+}
+
+/* Section Headings */
+.section h2 {
+  text-align: center;
+  color: darkblue;
+  margin-bottom: 15px;
+  font-size: 1.6rem;
+}
+
+/* Exercise List */
+.exercise-list {
+  list-style-type: none;
+  padding: 0;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Exercise Items */
+.exercise-item {
+  background-color: #fff;
+  width: 100%;
+  margin: 8px 0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover Effect */
+.exercise-item:hover {
+  background-color: #f1f1f1;
+  transform: scale(1.02);
+}
+
+/* Checkbox Styling */
+.exercise-item input[type="checkbox"] {
+  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Sub Exercise List */
+.sub-exercise-list {
+  margin-top: 8px;
+  padding: 0;
+  width: 100%;
+  list-style-type: none;
+}
+
+/* Sub Exercise Item */
+.sub-exercise-item {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+}
+
+/* Strike-through for Completed Sections */
+.strike-through {
+  text-decoration: line-through;
+  color: gray;
+  font-weight: normal;
+  opacity: 0.7;
+}
+
+/* ✅ Ensure 2 Sections Per Row on Mobile */
+@media (max-width: 600px) {
+  .section-container {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Force two columns even on small screens */
+  }
+}
+@media (min-width: 768px) {
+  /* Desktop */
+  #tit {
+    font-size: 6vh;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Mobile */
+  #tit {
+    font-size: 2vh;
+  }
+}
+.reset-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: #ff4d4d; /* Red color to indicate reset action */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.reset-button:active {
+  transform: scale(0.95);
+}
+
+/* Workout Day Titles */
+.day-title {
+  background-color: darkblue;
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.day-title:hover {
+  background-color: navy;
+}
+
+/* Workout Day Content (Initially Hidden) */
+/* Ensure smooth transition on expanding/collapsing */
+.day-content {
+  max-height: 0; /* Initially collapsed */
+  opacity: 0; /* Initially invisible */
+  overflow: hidden; /* Hide overflowing content */
+  transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition */
+}
+
+.day-content.expanded {
+  max-height: 500px; /* Adjust based on content */
+  opacity: 1; /* Make visible */
+}
+
+.workout-day.active .day-content {
+  max-height: 500px; /* Adjust based on content */
+  opacity: 1;
+}
