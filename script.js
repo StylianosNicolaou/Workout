@@ -1,5 +1,5 @@
-// Firebase CDN is already included in index.html
 document.addEventListener("DOMContentLoaded", function () {
+  // ✅ Initialize Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyCyZRt0Q3bkg-tno6GNUabRnsieMYPecmM",
     authDomain: "liveworkouttracker.firebaseapp.com",
@@ -27,10 +27,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ✅ Attach event listeners to checkboxes
   document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
-    checkbox.addEventListener("change", () => updateWorkoutProgress(checkbox));
+    checkbox.addEventListener("change", function () {
+      updateWorkoutProgress(this);
+    });
   });
 
-  // ✅ Listen for updates from Firebase
+  // ✅ Listen for real-time updates from Firebase
   workoutProgressRef.on("value", (snapshot) => {
     const data = snapshot.val();
     console.log("🔥 Firebase Data Updated:", data);
