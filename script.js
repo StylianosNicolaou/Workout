@@ -100,31 +100,39 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  document.querySelector(".reset-button").addEventListener("click", resetWorkout);
+
   // ✅ Reset all workouts
-function resetWorkout() {
-  if (confirm("Are you sure you want to reset all workouts?")) {
-    // Reset all checkboxes in Firebase
-    workoutProgressRef.set({}, (error) => {
-      if (error) {
-        console.error("Error resetting workout progress:", error);
-      } else {
-        console.log("✅ Workout progress reset successfully");
-
-        // Reset all checkboxes in the UI
-        document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
-          checkbox.checked = false;
-          
-          // Remove strike-through from sets and exercises
-          const label = checkbox.nextElementSibling;
-          if (label) label.classList.remove("strike-through");
-
-          const exerciseItem = checkbox.closest(".exercise-item");
-          updateExerciseStrikeThrough(exerciseItem);
-        });
-      }
-    });
-  }
-}
+  window.resetWorkout = function () {
+    if (confirm("Are you sure you want to reset all workouts?")) {
+      // Reset Firebase values to false for all checkboxes
+      const updates = {};
+      document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+        updates[checkbox.id] = false;
+      });
+  
+      workoutProgressRef.set(updates, (error) => {
+        if (error) {
+          console.error("❌ Error resetting workout progress:", error);
+        } else {
+          console.log("✅ Workout progress reset successfully");
+  
+          // Reset UI checkboxes
+          document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+            checkbox.checked = false;
+  
+            // Remove strike-through from sets and exercises
+            const label = checkbox.nextElementSibling;
+            if (label) label.classList.remove("strike-through");
+  
+            const exerciseItem = checkbox.closest(".exercise-item");
+            updateExerciseStrikeThrough(exerciseItem);
+          });
+        }
+      });
+    }
+  };
+  
 
 
 });
