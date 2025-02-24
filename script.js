@@ -19,12 +19,12 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const workoutRef = ref(db, "workoutProgress");
 
-// ✅ Function to update Firebase when a checkbox is clicked
+// ✅ Function to save exercise state to Firebase
 function saveExerciseState(exerciseId, isChecked) {
   set(ref(db, `workoutProgress/${exerciseId}`), isChecked);
 }
 
-// ✅ Function to update UI based on checkbox states
+// ✅ Function to update UI based on Firebase data
 function updateUI(snapshot) {
   const data = snapshot.val();
   if (!data) return;
@@ -36,7 +36,7 @@ function updateUI(snapshot) {
     }
   });
 
-  // ✅ Update strike-through for all exercise sections
+  // ✅ Update strike-through for each exercise section
   document.querySelectorAll(".exercise-item").forEach(updateStrikeThrough);
 }
 
@@ -62,4 +62,6 @@ document.querySelectorAll(".exercise-item").forEach((section) => {
 });
 
 // ✅ Listen for real-time changes from Firebase
-onValue(workoutRef, updateUI);
+onValue(workoutRef, (snapshot) => {
+  updateUI(snapshot);
+});
