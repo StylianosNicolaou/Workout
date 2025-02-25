@@ -1,30 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const dayTitles = document.querySelectorAll(".day-title");
+  const dayButtons = document.querySelectorAll(".day-title");
 
-  dayTitles.forEach((title) => {
-    title.addEventListener("click", function () {
+  dayButtons.forEach((button) => {
+    button.addEventListener("click", function () {
       console.log("Toggling:", this.textContent);
 
-      const parent = this.parentElement; // The .workout-day container
-      const content = this.nextElementSibling; // The .day-content section
+      const parent = this.parentElement;
+      const content = this.nextElementSibling;
 
       if (!content || !content.classList.contains("day-content")) {
         console.error("No .day-content element found!");
         return;
       }
 
-      const isExpanded = content.style.maxHeight !== "0px";
+      const isExpanded = getComputedStyle(content).maxHeight !== "0px";
 
       if (isExpanded) {
-        // Collapse the content
         console.log(this.textContent, "is now collapsed");
-        content.style.maxHeight = "0px"; // Collapse the content
+        content.style.maxHeight = "0px"; // Collapse
         content.style.opacity = "0"; // Fade out
+        this.setAttribute("aria-expanded", "false");
       } else {
-        // Expand the content
         console.log(this.textContent, "is now expanded");
-        content.style.maxHeight = content.scrollHeight + "px"; // Expand the content
+        content.style.maxHeight = content.scrollHeight + "px"; // Expand
         content.style.opacity = "1"; // Fade in
+        this.setAttribute("aria-expanded", "true");
       }
     });
   });
@@ -133,7 +133,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ✅ Reset Workout Functionality
   window.resetWorkout = function () {
-    const confirmReset = confirm("Are you sure you want to reset all workouts?");
+    const confirmReset = confirm(
+      "Are you sure you want to reset all workouts?"
+    );
     if (!confirmReset) {
       return; // If user cancels, do nothing
     }
