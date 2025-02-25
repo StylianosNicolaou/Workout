@@ -1,5 +1,35 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // ✅ Initialize Firebase
+  const dayButtons = document.querySelectorAll(".day-title");
+
+  dayButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      console.log("Toggling:", this.textContent);
+
+      const parent = this.parentElement;
+      const content = this.nextElementSibling;
+
+      if (!content || !content.classList.contains("day-content")) {
+        console.error("No .day-content element found!");
+        return;
+      }
+
+      const isExpanded = getComputedStyle(content).maxHeight !== "0px";
+
+      if (isExpanded) {
+        console.log(this.textContent, "is now collapsed");
+        content.style.maxHeight = "0px"; // Collapse
+        content.style.opacity = "0"; // Fade out
+        this.setAttribute("aria-expanded", "false");
+      } else {
+        console.log(this.textContent, "is now expanded");
+        content.style.maxHeight = content.scrollHeight + "px"; // Expand
+        content.style.opacity = "1"; // Fade in
+        this.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+
+  // ✅ Initialize Firebase (if needed)
   const firebaseConfig = {
     apiKey: "AIzaSyCyZRt0Q3bkg-tno6GNUabRnsieMYPecmM",
     authDomain: "liveworkouttracker.firebaseapp.com",
@@ -11,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     appId: "1:608217186734:web:c1eb261b47b0a9a163483f",
   };
 
+  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
   const workoutProgressRef = db.ref("workoutProgress");
@@ -100,34 +131,36 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // ✅ Reset Workout Functionality
   window.resetWorkout = function () {
-    const confirmReset = confirm("Are you sure you want to reset all workouts?");
-    
+    const confirmReset = confirm(
+      "Are you sure you want to reset all workouts?"
+    );
     if (!confirmReset) {
       return; // If user cancels, do nothing
     }
-  
+
     console.log("🧹 Resetting Workout...");
-  
+
     // Set all checkboxes to unchecked
     document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
       checkbox.checked = false;
-  
+
       // Remove strike-through from text
       const label = checkbox.nextElementSibling;
       if (label) {
         label.classList.remove("strike-through");
       }
-  
+
       // Update Firebase (Set all values to false)
       workoutProgressRef.child(checkbox.id).set(false);
     });
-  
+
     // Remove strike-through from exercise titles
     document.querySelectorAll(".exercise-item h2").forEach((title) => {
       title.classList.remove("strike-through");
     });
-  
+
     console.log("✅ Workout Reset Successful");
   };
 });

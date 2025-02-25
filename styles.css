@@ -42,10 +42,7 @@ h1 {
 /* ✅ Responsive Grid for Sections (Always 2 per Row) */
 .section-container {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(300px, 1fr)
-  ); /* Ensures 2 per row */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   width: 90%;
   max-width: 1200px;
@@ -183,4 +180,63 @@ h1 {
 
 .reset-button:active {
   transform: scale(0.95);
+}
+
+/* Style the buttons */
+.day-title {
+  display: block; /* Makes the buttons stack */
+  width: 100%; /* Full width */
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: hotpink; /* Hotpink text */
+  background: none; /* No background */
+  border: none; /* No border */
+  padding: 15px; /* Add spacing */
+  margin: 40px 0; /* Space between buttons */
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Add hover effect */
+.day-title:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+  opacity: 0.8; /* Reduce opacity on hover */
+}
+
+/* Add focus effect for accessibility */
+.day-title:focus {
+  outline: 2px solid hotpink; /* Highlight when focused */
+}
+
+/* Ensure the .day-content displays sections side by side */
+.day-content {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 40px; /* Space between sections */
+  justify-content: space-between; /* Distribute space evenly */
+  padding-top: 10px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-in-out;
+}
+
+/* Make each section take up equal space */
+.section {
+  flex: 1; /* Allows sections to grow evenly */
+  min-width: 300px; /* Prevents sections from becoming too small */
+}
+
+/* Ensure two sections appear next to each other */
+.workout-day .day-content .section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Expand effect when toggling */
+.workout-day.active .day-content {
+  max-height: 1000px; /* Large enough to fit all content */
+  opacity: 1;
 }

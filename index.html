@@ -1,1125 +1,1257 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script defer src="script.js"></script>
     <title>Workout</title>
-</head>
+  </head>
+
   <body>
     <h1 class="title" id="tit">THE ACE GYM</h1>
-    <h1>LEG DAY</h1>
-     <div class="section-container">
-      <!-- VV Section -->
-      <div class="section" id="VV">
-      <h2>VV</h2>
-      <ul class="exercise-list">
-        <!-- Warm-up -->
-        <li class="exercise-item" id="warm-up-item-vv">
-          <h2>Warm-up</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="warm-up-check-vv" />
-              <span>5 mins</span>
-            </li>
-          </ul>
-        </li>
 
-        <!-- Leg Extensions -->
-        <li class="exercise-item" id="leg-extensions-item-vv">
-          <h2>Leg Extensions</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-extensions-set-1-vv" />
-              <span>Set 1: 12-15 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-extensions-set-2-vv" />
-              <span>Set 2: 12-15 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-extensions-set-3-vv" />
-              <span>Set 3: 12-15 reps</span>
-            </li>
-          </ul>
-        </li>
+    <div class="section-container">
+      <div class="workout-day">
+        <button class="day-title" id="leg-day-btn">LEG DAY</button>
+        <div class="day-content">
+          <!-- VV Section -->
+          <div class="section" id="VV">
+            <h2>VV</h2>
+            <ul class="exercise-list">
+              <!-- Warm-up -->
+              <li class="exercise-item" id="warm-up-item-vv">
+                <h2>Warm-up</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="warm-up-check-vv" />
+                    <span>5 mins</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Leg Curls -->
-        <li class="exercise-item" id="leg-curls-item-vv">
-          <h2>Leg Curls</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-curls-set-1-vv" />
-              <span>Set 1: 12-15 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-curls-set-2-vv" />
-              <span>Set 2: 12-15 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-curls-set-3-vv" />
-              <span>Set 3: 12-15 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Leg Extensions -->
+              <li class="exercise-item" id="leg-extensions-item-vv">
+                <h2>Leg Extensions</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-1-vv" />
+                    <span>Set 1: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-2-vv" />
+                    <span>Set 2: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-vv" />
+                    <span>Set 3: 12-15 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Leg Press -->
-        <li class="exercise-item" id="leg-press-item-vv">
-          <h2>Leg Press</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-press-set-1-vv" />
-              <span>Set 1: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-press-set-2-vv" />
-              <span>Set 2: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-press-set-3-vv" />
-              <span>Set 3: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-press-set-4-vv" />
-              <span>Set 4: 12 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Leg Curls -->
+              <li class="exercise-item" id="leg-curls-item-vv">
+                <h2>Leg Curls</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-1-vv" />
+                    <span>Set 1: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-2-vv" />
+                    <span>Set 2: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-3-vv" />
+                    <span>Set 3: 12-15 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Calf Raises -->
-        <li class="exercise-item" id="calf-raises-item-vv">
-          <h2>Calf Raises</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-1-vv" />
-              <span>Set 1: 15 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-2-vv" />
-              <span>Set 2: 15 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-3-vv" />
-              <span>Set 3: 15 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Leg Press -->
+              <li class="exercise-item" id="leg-press-item-vv">
+                <h2>Leg Press</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-1-vv" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-2-vv" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-3-vv" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-4-vv" />
+                    <span>Set 4: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Hip Abduction Opening -->
-        <li class="exercise-item" id="hip-abduction-opening-item-vv">
-          <h2>Hip Abduction-Opening</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-opening-set-1-vv" />
-              <span>Set 1: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-opening-set-2-vv" />
-              <span>Set 2: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-opening-set-3-vv" />
-              <span>Set 3: 12 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Calf Raises -->
+              <li class="exercise-item" id="calf-raises-item-vv">
+                <h2>Calf Raises</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-1-vv" />
+                    <span>Set 1: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-2-vv" />
+                    <span>Set 2: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-vv" />
+                    <span>Set 3: 15 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Hip Abduction Closing -->
-        <li class="exercise-item" id="hip-abduction-closing-item-vv">
-          <h2>Hip Abduction-Closing</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-1-vv" />
-              <span>Set 1: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-2-vv" />
-              <span>Set 2: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-3-vv" />
-              <span>Set 3: 12 reps</span>
-            </li>
-          </ul>
-        </li>
-      </ul>
+              <!-- Hip Abduction Opening -->
+              <li class="exercise-item" id="hip-abduction-opening-item-vv">
+                <h2>Hip Abduction-Opening</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-1-vv"
+                    />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-2-vv"
+                    />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-3-vv"
+                    />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Hip Abduction Closing -->
+              <li class="exercise-item" id="hip-abduction-closing-item-vv">
+                <h2>Hip Abduction-Closing</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-1-vv"
+                    />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-2-vv"
+                    />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-3-vv"
+                    />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="section" id="KK">
+            <h2>KK</h2>
+            <ul class="exercise-list">
+              <!-- Same workout for KK with light blue background -->
+              <!-- Warm-up -->
+              <li class="exercise-item" id="warm-up-item-kk">
+                <h2>Warm-up</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="warm-up-check-kk" />
+                    <span>5 mins</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Leg Extensions -->
+              <li class="exercise-item" id="leg-extensions-item-kk">
+                <h2>Leg Extensions</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-1-kk" />
+                    <span>Set 1: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-2-kk" />
+                    <span>Set 2: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-kk" />
+                    <span>Set 3: 12-15 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Leg Curls -->
+              <li class="exercise-item" id="leg-curls-item-kk">
+                <h2>Leg Curls</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-1-kk" />
+                    <span>Set 1: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-2-kk" />
+                    <span>Set 2: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-3-kk" />
+                    <span>Set 3: 12-15 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Leg Press -->
+              <li class="exercise-item" id="leg-press-item-kk">
+                <h2>Leg Press</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-1-kk" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-2-kk" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-3-kk" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-4-kk" />
+                    <span>Set 4: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Calf Raises -->
+              <li class="exercise-item" id="calf-raises-item-kk">
+                <h2>Calf Raises</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-1-kk" />
+                    <span>Set 1: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-2-kk" />
+                    <span>Set 2: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-kk" />
+                    <span>Set 3: 15 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Hip Abduction Opening -->
+              <li class="exercise-item" id="hip-abduction-opening-item-kk">
+                <h2>-</h2>
+              </li>
+
+              <!-- Hip Abduction Closing -->
+              <li class="exercise-item" id="hip-abduction-closing-item-kk">
+                <h2>Hip Abduction-Closing</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-1-kk"
+                    />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-2-kk"
+                    />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-3-kk"
+                    />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="section" id="KK">
-      <h2>KK</h2>
-      <ul class="exercise-list">
-        <!-- Same workout for KK with light blue background -->
-        <!-- Warm-up -->
-        <li class="exercise-item" id="warm-up-item-kk">
-          <h2>Warm-up</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="warm-up-check-kk" />
-              <span>5 mins</span>
-            </li>
-          </ul>
-        </li>
+    <!-- PUSH DAY -->
+    <div class="section-container">
+      <div class="workout-day">
+        <button class="day-title" id="push-day-btn">PUSH DAY</button>
+        <div class="day-content">
+          <div class="section" id="VV">
+            <h2>VV</h2>
+            <ul class="exercise-list">
+              <!-- Chest press -->
+              <li class="exercise-item" id="leg-extensions-item-vv">
+                <h2>Chest Press</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-1-vv" />
+                    <span>Set 1: 10 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-2-vv" />
+                    <span>Set 2: 10 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-vv" />
+                    <span>Set 3: 10 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Leg Extensions -->
-        <li class="exercise-item" id="leg-extensions-item-kk">
-          <h2>Leg Extensions</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-extensions-set-1-kk" />
-              <span>Set 1: 12-15 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-extensions-set-2-kk" />
-              <span>Set 2: 12-15 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-extensions-set-3-kk" />
-              <span>Set 3: 12-15 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Leg Extensions -->
+              <li class="exercise-item" id="leg-curls-item-vv">
+                <h2>Leg Extensions</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-1-vv" />
+                    <span>Set 1: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-2-vv" />
+                    <span>Set 2: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-3-vv" />
+                    <span>Set 3: 12-15 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Leg Curls -->
-        <li class="exercise-item" id="leg-curls-item-kk">
-          <h2>Leg Curls</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-curls-set-1-kk" />
-              <span>Set 1: 12-15 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-curls-set-2-kk" />
-              <span>Set 2: 12-15 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-curls-set-3-kk" />
-              <span>Set 3: 12-15 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Hip abduction-closing -->
+              <li class="exercise-item" id="leg-press-item-vv">
+                <h2>Hip abduction-closing</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-1-vv" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-2-vv" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-3-vv" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Leg Press -->
-        <li class="exercise-item" id="leg-press-item-kk">
-          <h2>Leg Press</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-press-set-1-kk" />
-              <span>Set 1: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-press-set-2-kk" />
-              <span>Set 2: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-press-set-3-kk" />
-              <span>Set 3: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-press-set-4-kk" />
-              <span>Set 4: 12 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Leg Press -->
+              <li class="exercise-item" id="calf-raises-item-vv">
+                <h2>Leg Press</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-1-vv" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-2-vv" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-vv" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-vv" />
+                    <span>Set 4: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Calf Raises -->
-        <li class="exercise-item" id="calf-raises-item-kk">
-          <h2>Calf Raises</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-1-kk" />
-              <span>Set 1: 15 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-2-kk" />
-              <span>Set 2: 15 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-3-kk" />
-              <span>Set 3: 15 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Shoulder Press -->
+              <li class="exercise-item" id="hip-abduction-opening-item-vv">
+                <h2>Shoulder Press</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-1-vv"
+                    />
+                    <span>Set 1: 10 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-2-vv"
+                    />
+                    <span>Set 2: 10 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-3-vv"
+                    />
+                    <span>Set 3: 10 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Hip Abduction Opening -->
-        <li class="exercise-item" id="hip-abduction-opening-item-kk">
-          <h2>-</h2>
-        </li>
+              <!-- Triceps pushdown -->
+              <li class="exercise-item" id="hip-abduction-closing-item-vv">
+                <h2>Tricep Pushdown</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-1-vv"
+                    />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-2-vv"
+                    />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-3-vv"
+                    />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Hip Abduction Closing -->
-        <li class="exercise-item" id="hip-abduction-closing-item-kk">
-          <h2>Hip Abduction-Closing</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-1-kk" />
-              <span>Set 1: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-2-kk" />
-              <span>Set 2: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-3-kk" />
-              <span>Set 3: 12 reps</span>
-            </li>
-          </ul>
-        </li>
-      </ul>
+              <li class="exercise-item" id="hip-abduction-closing-item-vv">
+                <h2>-</h2>
+              </li>
+            </ul>
+          </div>
+
+          <div class="section" id="KK">
+            <h2>KK</h2>
+            <ul class="exercise-list">
+              <!-- Same workout for KK with light blue background -->
+
+              <!-- Chest press -->
+              <li class="exercise-item" id="leg-extensions-item-vv">
+                <h2>Chest Press</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-1-vv" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-2-vv" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-vv" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-vv" />
+                    <span>Set 4: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Chest Flies -->
+              <li class="exercise-item" id="leg-curls-item-kk">
+                <h2>Chest Flies</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-1-kk" />
+                    <span>Set 1: 10-12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-2-kk" />
+                    <span>Set 2: 10-12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-3-kk" />
+                    <span>Set 3: 10-12 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Cable press-decline -->
+              <li class="exercise-item" id="leg-press-item-kk">
+                <h2>Cable Press-Decline</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-1-kk" />
+                    <span>Set 1: 10-12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-2-kk" />
+                    <span>Set 2: 10-12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-3-kk" />
+                    <span>Set 3: 10-12 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Lateral raises -->
+              <li class="exercise-item" id="calf-raises-item-kk">
+                <h2>Lateral Raises</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-1-kk" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-2-kk" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-kk" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-kk" />
+                    <span>Set 4: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Shoulder press -->
+              <li class="exercise-item" id="calf-raises-item-kk">
+                <h2>Shoulder Press</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-1-kk" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-2-kk" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-kk" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-kk" />
+                    <span>Set 4: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Tricep pushdown/Tricep extensions -->
+              <li class="exercise-item" id="hip-abduction-closing-item-kk">
+                <h2>Tricep Pushdown & Tricep Extensions</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-1-kk"
+                    />
+                    <span>Set 1: 12 reps (TP)</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-1-kk"
+                    />
+                    <span>Set 1: 12 reps (TE)</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-2-kk"
+                    />
+                    <span>Set 2: 12 reps (TP)</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-2-kk"
+                    />
+                    <span>Set 2: 12 reps (TE)</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-3-kk"
+                    />
+                    <span>Set 3: 12 reps (TP)</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-closing-set-3-kk"
+                    />
+                    <span>Set 3: 12 reps (TE)</span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-     </div>
+    <!-- PULL DAY -->
+    <div class="section-container">
+      <div class="workout-day">
+        <button class="day-title" id="pull-day-btn">PULL DAY</button>
+        <div class="day-content">
+          <div class="section" id="VV">
+            <h2>VV</h2>
+            <ul class="exercise-list">
+              <!-- Lat pulldown -->
+              <li class="exercise-item" id="leg-extensions-item-vv">
+                <h2>Lat Pulldown</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-1-vv" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-2-vv" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-vv" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-  </body>
-  <h1>PUSH DAY</h1>
-  <div class="section-container">
-    <div class="section" id="VV">
-      <h2>VV</h2>
-      <ul class="exercise-list">
-        <!-- Chest press -->
-        <li class="exercise-item" id="leg-extensions-item-vv">
-          <h2>Chest Press</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-extensions-set-1-vv" />
-              <span>Set 1: 10 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-extensions-set-2-vv" />
-              <span>Set 2: 10 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-extensions-set-3-vv" />
-              <span>Set 3: 10 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Seated machine row -->
+              <li class="exercise-item" id="leg-curls-item-vv">
+                <h2>Seated Machine Row</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-1-vv" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-2-vv" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-3-vv" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Leg Extensions -->
-        <li class="exercise-item" id="leg-curls-item-vv">
-          <h2>Leg Extensions</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-curls-set-1-vv" />
-              <span>Set 1: 12-15 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-curls-set-2-vv" />
-              <span>Set 2: 12-15 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-curls-set-3-vv" />
-              <span>Set 3: 12-15 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Seated cable row -->
+              <li class="exercise-item" id="leg-press-item-vv">
+                <h2>Seated Cable Row</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-1-vv" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-2-vv" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-3-vv" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Hip abduction-closing -->
-        <li class="exercise-item" id="leg-press-item-vv">
-          <h2>Hip abduction-closing</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-press-set-1-vv" />
-              <span>Set 1: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-press-set-2-vv" />
-              <span>Set 2: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-press-set-3-vv" />
-              <span>Set 3: 12 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Close grip lat pulldown -->
+              <li class="exercise-item" id="calf-raises-item-vv">
+                <h2>Close Grip Lat pulldown</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-1-vv" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-2-vv" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-vv" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Leg Press -->
-        <li class="exercise-item" id="calf-raises-item-vv">
-          <h2>Leg Press</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-1-vv" />
-              <span>Set 1: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-2-vv" />
-              <span>Set 2: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-3-vv" />
-              <span>Set 3: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-3-vv" />
-              <span>Set 4: 12 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Bicep cable curl -->
+              <li class="exercise-item" id="hip-abduction-opening-item-vv">
+                <h2>Bicep Cable Curl</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-1-vv"
+                    />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-2-vv"
+                    />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-3-vv"
+                    />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Shoulder Press -->
-        <li class="exercise-item" id="hip-abduction-opening-item-vv">
-          <h2>Shoulder Press</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-opening-set-1-vv" />
-              <span>Set 1: 10 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-opening-set-2-vv" />
-              <span>Set 2: 10 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-opening-set-3-vv" />
-              <span>Set 3: 10 reps</span>
-            </li>
-          </ul>
-        </li>
+              <li class="exercise-item" id="hip-abduction-closing-item-vv">
+                <h2>-</h2>
+              </li>
+            </ul>
+          </div>
 
-        <!-- Triceps pushdown -->
-        <li class="exercise-item" id="hip-abduction-closing-item-vv">
-          <h2>Tricep Pushdown</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-1-vv" />
-              <span>Set 1: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-2-vv" />
-              <span>Set 2: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-3-vv" />
-              <span>Set 3: 12 reps</span>
-            </li>
-          </ul>
-        </li>
+          <div class="section" id="KK">
+            <h2>KK</h2>
+            <ul class="exercise-list">
+              <!-- Same workout for KK with light blue background -->
+              <!-- Lat pulldown -->
+              <li class="exercise-item" id="leg-extensions-item-vv">
+                <h2>Lat Pulldown</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-1-vv" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-2-vv" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-vv" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-vv" />
+                    <span>Set 4: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <li class="exercise-item" id="hip-abduction-closing-item-vv">
-          <h2>-</h2>
-        </li>
-      </ul>
+              <!-- Seated machine row -->
+              <li class="exercise-item" id="leg-curls-item-vv">
+                <h2>Seated Machine Row</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-1-vv" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-2-vv" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-3-vv" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-vv" />
+                    <span>Set 4: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Seated cable row -->
+              <li class="exercise-item" id="leg-press-item-vv">
+                <h2>Seated Cable Row</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-1-vv" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-2-vv" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-3-vv" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-vv" />
+                    <span>Set 4: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Close grip lat pulldown -->
+              <li class="exercise-item" id="calf-raises-item-vv">
+                <h2>Close Grip Lat pulldown</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-1-vv" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-2-vv" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-vv" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-vv" />
+                    <span>Set 4: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Bicep cable curl -->
+              <li class="exercise-item" id="hip-abduction-opening-item-vv">
+                <h2>Bicep Cable Curl</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-1-vv"
+                    />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-2-vv"
+                    />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-3-vv"
+                    />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Incline bicep curl -->
+              <li class="exercise-item" id="calf-raises-item-kk">
+                <h2>Incline Bicep Curl</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-1-kk" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-2-kk" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-kk" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="section" id="KK">
-      <h2>KK</h2>
-      <ul class="exercise-list">
-        <!-- Same workout for KK with light blue background -->
+    <div class="section-container">
+      <div class="workout-day">
+        <button class="day-title" id="full-body-btn">FULL BODY</button>
+        <div class="day-content">
+          <div class="section" id="VV">
+            <h2>VV</h2>
+            <ul class="exercise-list">
+              <!-- Crunches -->
+              <li class="exercise-item" id="leg-extensions-item-vv">
+                <h2>Crunches</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-1-vv" />
+                    <span>Set 1: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-2-vv" />
+                    <span>Set 2: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-vv" />
+                    <span>Set 3: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-vv" />
+                    <span>Set 4: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-vv" />
+                    <span>Set 5: 15 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Chest press -->
-        <li class="exercise-item" id="leg-extensions-item-vv">
-          <h2>Chest Press</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-extensions-set-1-vv" />
-              <span>Set 1: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-extensions-set-2-vv" />
-              <span>Set 2: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-extensions-set-3-vv" />
-              <span>Set 3: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-extensions-set-3-vv" />
-              <span>Set 4: 12 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Flutter kicks -->
+              <li class="exercise-item" id="leg-curls-item-vv">
+                <h2>Flutter Kicks</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-1-vv" />
+                    <span>Set 1: 20 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-2-vv" />
+                    <span>Set 2: 20 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-3-vv" />
+                    <span>Set 3: 20 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Chest Flies -->
-        <li class="exercise-item" id="leg-curls-item-kk">
-          <h2>Chest Flies</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-curls-set-1-kk" />
-              <span>Set 1: 10-12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-curls-set-2-kk" />
-              <span>Set 2: 10-12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-curls-set-3-kk" />
-              <span>Set 3: 10-12 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Leg raises -->
+              <li class="exercise-item" id="leg-press-item-vv">
+                <h2>Leg Raises</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-1-vv" />
+                    <span>Set 1: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-2-vv" />
+                    <span>Set 2: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-3-vv" />
+                    <span>Set 3: 12-15 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Cable press-decline -->
-        <li class="exercise-item" id="leg-press-item-kk">
-          <h2>Cable Press-Decline</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-press-set-1-kk" />
-              <span>Set 1: 10-12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-press-set-2-kk" />
-              <span>Set 2: 10-12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="leg-press-set-3-kk" />
-              <span>Set 3: 10-12 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Seated knee tucks -->
+              <li class="exercise-item" id="calf-raises-item-vv">
+                <h2>Seated Knee Tucks</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-1-vv" />
+                    <span>Set 1: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-2-vv" />
+                    <span>Set 2: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-vv" />
+                    <span>Set 3: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-vv" />
+                    <span>Set 4: 15 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Lateral raises -->
-        <li class="exercise-item" id="calf-raises-item-kk">
-          <h2>Lateral Raises</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-1-kk" />
-              <span>Set 1: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-2-kk" />
-              <span>Set 2: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-3-kk" />
-              <span>Set 3: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-3-kk" />
-              <span>Set 4: 12 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Hip thrusts -->
+              <li class="exercise-item" id="hip-abduction-opening-item-vv">
+                <h2>Hip Thrusts</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-1-vv"
+                    />
+                    <span>Set 1: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-2-vv"
+                    />
+                    <span>Set 2: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-3-vv"
+                    />
+                    <span>Set 3: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-3-vv"
+                    />
+                    <span>Set 4: 12-15 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Shoulder press -->
-        <li class="exercise-item" id="calf-raises-item-kk">
-          <h2>Shoulder Press</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-1-kk" />
-              <span>Set 1: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-2-kk" />
-              <span>Set 2: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-3-kk" />
-              <span>Set 3: 12 reps</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="calf-raises-set-3-kk" />
-              <span>Set 4: 12 reps</span>
-            </li>
-          </ul>
-        </li>
+              <!-- Glute kickbacks -->
+              <li class="exercise-item" id="hip-abduction-opening-item-vv">
+                <h2>Glute Kickbacks</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-1-vv"
+                    />
+                    <span>Set 1: 20 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-2-vv"
+                    />
+                    <span>Set 2: 20 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-3-vv"
+                    />
+                    <span>Set 3: 20 reps</span>
+                  </li>
+                </ul>
+              </li>
 
-        <!-- Tricep pushdown/Tricep extensions -->
-        <li class="exercise-item" id="hip-abduction-closing-item-kk">
-          <h2>Tricep Pushdown & Tricep Extensions</h2>
-          <ul class="sub-exercise-list">
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-1-kk" />
-              <span>Set 1: 12 reps (TP)</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-1-kk" />
-              <span>Set 1: 12 reps (TE)</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-2-kk" />
-              <span>Set 2: 12 reps (TP)</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-2-kk" />
-              <span>Set 2: 12 reps (TE)</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-3-kk" />
-              <span>Set 3: 12 reps (TP)</span>
-            </li>
-            <li class="sub-exercise-item">
-              <input type="checkbox" id="hip-abduction-closing-set-3-kk" />
-              <span>Set 3: 12 reps (TE)</span>
-            </li>
-          </ul>
-        </li>
-      </ul>
+              <!-- Side lunges -->
+              <li class="exercise-item" id="hip-abduction-opening-item-vv">
+                <h2>Side Lunges</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-1-vv"
+                    />
+                    <span>Set 1: 20 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-2-vv"
+                    />
+                    <span>Set 2: 20 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Elbow plank -->
+              <li class="exercise-item" id="hip-abduction-opening-item-vv">
+                <h2>Elbow Plank</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-1-vv"
+                    />
+                    <span>Set 1: 45 secs</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-2-vv"
+                    />
+                    <span>Set 2: 45 secs</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-3-vv"
+                    />
+                    <span>Set 3: 45 secs</span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="section" id="KK">
+            <h2>KK</h2>
+            <ul class="exercise-list">
+              <!-- Same workout for KK with light blue background -->
+              <!-- Crunches -->
+              <li class="exercise-item" id="leg-extensions-item-kk">
+                <h2>Crunches</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-1-kk" />
+                    <span>Set 1: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-2-kk" />
+                    <span>Set 2: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-kk" />
+                    <span>Set 3: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-kk" />
+                    <span>Set 4: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-extensions-set-3-kk" />
+                    <span>Set 5: 15 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Flutter kicks -->
+              <li class="exercise-item" id="leg-curls-item-kk">
+                <h2>Flutter Kicks</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-1-kk" />
+                    <span>Set 1: 20 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-2-kk" />
+                    <span>Set 2: 20 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-curls-set-3-kk" />
+                    <span>Set 3: 20 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Leg raises -->
+              <li class="exercise-item" id="leg-press-item-vv">
+                <h2>Leg Raises</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-1-vv" />
+                    <span>Set 1: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-2-vv" />
+                    <span>Set 2: 12-15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="leg-press-set-3-vv" />
+                    <span>Set 3: 12-15 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Seated knee tucks -->
+              <li class="exercise-item" id="calf-raises-item-vv">
+                <h2>Seated Knee Tucks</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-1-vv" />
+                    <span>Set 1: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-2-vv" />
+                    <span>Set 2: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-vv" />
+                    <span>Set 3: 15 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-vv" />
+                    <span>Set 4: 15 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <!-- Sitting twists -->
+              <li class="exercise-item" id="calf-raises-item-vv">
+                <h2>Sitting Twists</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-1-vv" />
+                    <span>Set 1: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-2-vv" />
+                    <span>Set 2: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-vv" />
+                    <span>Set 3: 12 reps</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input type="checkbox" id="calf-raises-set-3-vv" />
+                    <span>Set 4: 12 reps</span>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="exercise-item" id="hip-abduction-closing-item-vv">
+                <h2>-</h2>
+              </li>
+
+              <li class="exercise-item" id="hip-abduction-closing-item-vv">
+                <h2>-</h2>
+              </li>
+
+              <!-- Elbow plank -->
+              <li class="exercise-item" id="hip-abduction-opening-item-vv">
+                <h2>Elbow Plank</h2>
+                <ul class="sub-exercise-list">
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-1-vv"
+                    />
+                    <span>Set 1: 45 secs</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-2-vv"
+                    />
+                    <span>Set 2: 45 secs</span>
+                  </li>
+                  <li class="sub-exercise-item">
+                    <input
+                      type="checkbox"
+                      id="hip-abduction-opening-set-3-vv"
+                    />
+                    <span>Set 3: 45 secs</span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+    <button class="reset-button" onclick="resetWorkout()">
+      Reset Workouts
+    </button>
+
     <script src="script.js"></script>
   </body>
-
-</body>
-<h1>PULL DAY</h1>
-<div class="section-container">
-  <div class="section" id="VV">
-    <h2>VV</h2>
-    <ul class="exercise-list">
-      <!-- Lat pulldown -->
-      <li class="exercise-item" id="leg-extensions-item-vv">
-        <h2>Lat Pulldown</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-1-vv" />
-            <span>Set 1: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-2-vv" />
-            <span>Set 2: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-3-vv" />
-            <span>Set 3: 12 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Seated machine row -->
-      <li class="exercise-item" id="leg-curls-item-vv">
-        <h2>Seated Machine Row</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-curls-set-1-vv" />
-            <span>Set 1: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-curls-set-2-vv" />
-            <span>Set 2: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-curls-set-3-vv" />
-            <span>Set 3: 12 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Seated cable row -->
-      <li class="exercise-item" id="leg-press-item-vv">
-        <h2>Seated Cable Row</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-press-set-1-vv" />
-            <span>Set 1: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-press-set-2-vv" />
-            <span>Set 2: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-press-set-3-vv" />
-            <span>Set 3: 12 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Close grip lat pulldown -->
-      <li class="exercise-item" id="calf-raises-item-vv">
-        <h2>Close Grip Lat pulldown</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-1-vv" />
-            <span>Set 1: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-2-vv" />
-            <span>Set 2: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-3-vv" />
-            <span>Set 3: 12 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Bicep cable curl -->
-      <li class="exercise-item" id="hip-abduction-opening-item-vv">
-        <h2>Bicep Cable Curl</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-1-vv" />
-            <span>Set 1: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-2-vv" />
-            <span>Set 2: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-3-vv" />
-            <span>Set 3: 12 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <li class="exercise-item" id="hip-abduction-closing-item-vv">
-        <h2>-</h2>
-      </li>
-    </ul>
-  </div>
-
-  <div class="section" id="KK">
-    <h2>KK</h2>
-    <ul class="exercise-list">
-      <!-- Same workout for KK with light blue background -->
-      <!-- Lat pulldown -->
-      <li class="exercise-item" id="leg-extensions-item-vv">
-        <h2>Lat Pulldown</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-1-vv" />
-            <span>Set 1: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-2-vv" />
-            <span>Set 2: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-3-vv" />
-            <span>Set 3: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-3-vv" />
-            <span>Set 4: 12 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Seated machine row -->
-      <li class="exercise-item" id="leg-curls-item-vv">
-        <h2>Seated Machine Row</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-curls-set-1-vv" />
-            <span>Set 1: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-curls-set-2-vv" />
-            <span>Set 2: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-curls-set-3-vv" />
-            <span>Set 3: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-3-vv" />
-            <span>Set 4: 12 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Seated cable row -->
-      <li class="exercise-item" id="leg-press-item-vv">
-        <h2>Seated Cable Row</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-press-set-1-vv" />
-            <span>Set 1: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-press-set-2-vv" />
-            <span>Set 2: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-press-set-3-vv" />
-            <span>Set 3: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-3-vv" />
-            <span>Set 4: 12 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Close grip lat pulldown -->
-      <li class="exercise-item" id="calf-raises-item-vv">
-        <h2>Close Grip Lat pulldown</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-1-vv" />
-            <span>Set 1: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-2-vv" />
-            <span>Set 2: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-3-vv" />
-            <span>Set 3: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-3-vv" />
-            <span>Set 4: 12 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Bicep cable curl -->
-      <li class="exercise-item" id="hip-abduction-opening-item-vv">
-        <h2>Bicep Cable Curl</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-1-vv" />
-            <span>Set 1: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-2-vv" />
-            <span>Set 2: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-3-vv" />
-            <span>Set 3: 12 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Incline bicep curl -->
-      <li class="exercise-item" id="calf-raises-item-kk">
-        <h2>Incline Bicep Curl</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-1-kk" />
-            <span>Set 1: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-2-kk" />
-            <span>Set 2: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-3-kk" />
-            <span>Set 3: 12 reps</span>
-          </li>
-        </ul>
-      </li>
-
-
-    </ul>
-  </div>
-</div>
-  <script src="script.js"></script>
-</body>
-
-</body>
-<h1>FULL BODY DAY</h1>
-<div class="section-container">
-  <div class="section" id="VV">
-    <h2>VV</h2>
-    <ul class="exercise-list">
-      <!-- Crunches -->
-      <li class="exercise-item" id="leg-extensions-item-vv">
-        <h2>Crunches</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-1-vv" />
-            <span>Set 1: 15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-2-vv" />
-            <span>Set 2: 15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-3-vv" />
-            <span>Set 3: 15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-3-vv" />
-            <span>Set 4: 15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-3-vv" />
-            <span>Set 5: 15 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Flutter kicks -->
-      <li class="exercise-item" id="leg-curls-item-vv">
-        <h2>Flutter Kicks</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-curls-set-1-vv" />
-            <span>Set 1: 20 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-curls-set-2-vv" />
-            <span>Set 2: 20 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-curls-set-3-vv" />
-            <span>Set 3: 20 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Leg raises -->
-      <li class="exercise-item" id="leg-press-item-vv">
-        <h2>Leg Raises</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-press-set-1-vv" />
-            <span>Set 1: 12-15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-press-set-2-vv" />
-            <span>Set 2: 12-15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-press-set-3-vv" />
-            <span>Set 3: 12-15 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Seated knee tucks -->
-      <li class="exercise-item" id="calf-raises-item-vv">
-        <h2>Seated Knee Tucks</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-1-vv" />
-            <span>Set 1: 15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-2-vv" />
-            <span>Set 2: 15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-3-vv" />
-            <span>Set 3: 15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-3-vv" />
-            <span>Set 4: 15 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Hip thrusts -->
-      <li class="exercise-item" id="hip-abduction-opening-item-vv">
-        <h2>Hip Thrusts</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-1-vv" />
-            <span>Set 1: 12-15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-2-vv" />
-            <span>Set 2: 12-15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-3-vv" />
-            <span>Set 3: 12-15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-3-vv" />
-            <span>Set 4: 12-15 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Glute kickbacks -->
-      <li class="exercise-item" id="hip-abduction-opening-item-vv">
-        <h2>Glute Kickbacks</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-1-vv" />
-            <span>Set 1: 20 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-2-vv" />
-            <span>Set 2: 20 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-3-vv" />
-            <span>Set 3: 20 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Side lunges -->
-      <li class="exercise-item" id="hip-abduction-opening-item-vv">
-        <h2>Side Lunges</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-1-vv" />
-            <span>Set 1: 20 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-2-vv" />
-            <span>Set 2: 20 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Elbow plank -->
-      <li class="exercise-item" id="hip-abduction-opening-item-vv">
-        <h2>Elbow Plank</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-1-vv" />
-            <span>Set 1: 45 secs</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-2-vv" />
-            <span>Set 2: 45 secs</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-3-vv" />
-            <span>Set 3: 45 secs</span>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-
-  <div class="section" id="KK">
-    <h2>KK</h2>
-    <ul class="exercise-list">
-      <!-- Same workout for KK with light blue background -->
-      <!-- Crunches -->
-      <li class="exercise-item" id="leg-extensions-item-vv">
-        <h2>Crunches</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-1-vv" />
-            <span>Set 1: 15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-2-vv" />
-            <span>Set 2: 15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-3-vv" />
-            <span>Set 3: 15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-3-vv" />
-            <span>Set 4: 15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-extensions-set-3-vv" />
-            <span>Set 5: 15 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Flutter kicks -->
-      <li class="exercise-item" id="leg-curls-item-vv">
-        <h2>Flutter Kicks</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-curls-set-1-vv" />
-            <span>Set 1: 20 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-curls-set-2-vv" />
-            <span>Set 2: 20 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-curls-set-3-vv" />
-            <span>Set 3: 20 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Leg raises -->
-      <li class="exercise-item" id="leg-press-item-vv">
-        <h2>Leg Raises</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-press-set-1-vv" />
-            <span>Set 1: 12-15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-press-set-2-vv" />
-            <span>Set 2: 12-15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="leg-press-set-3-vv" />
-            <span>Set 3: 12-15 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Seated knee tucks -->
-      <li class="exercise-item" id="calf-raises-item-vv">
-        <h2>Seated Knee Tucks</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-1-vv" />
-            <span>Set 1: 15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-2-vv" />
-            <span>Set 2: 15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-3-vv" />
-            <span>Set 3: 15 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-3-vv" />
-            <span>Set 4: 15 reps</span>
-          </li>
-        </ul>
-      </li>
-
-      <!-- Sitting twists -->
-      <li class="exercise-item" id="calf-raises-item-vv">
-        <h2>Sitting Twists</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-1-vv" />
-            <span>Set 1: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-2-vv" />
-            <span>Set 2: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-3-vv" />
-            <span>Set 3: 12 reps</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="calf-raises-set-3-vv" />
-            <span>Set 4: 12 reps</span>
-          </li>
-        </ul>
-      </li>
-
-
-      <li class="exercise-item" id="hip-abduction-closing-item-vv">
-        <h2>-</h2>
-      </li>
-
-      <li class="exercise-item" id="hip-abduction-closing-item-vv">
-        <h2>-</h2>
-      </li>
-
-      <!-- Elbow plank -->
-      <li class="exercise-item" id="hip-abduction-opening-item-vv">
-        <h2>Elbow Plank</h2>
-        <ul class="sub-exercise-list">
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-1-vv" />
-            <span>Set 1: 45 secs</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-2-vv" />
-            <span>Set 2: 45 secs</span>
-          </li>
-          <li class="sub-exercise-item">
-            <input type="checkbox" id="hip-abduction-opening-set-3-vv" />
-            <span>Set 3: 45 secs</span>
-          </li>
-        </ul>
-      </li>
-
-
-    </ul>
-  </div>
-</div>
-<button class="reset-button" onclick="resetWorkout()">Reset Workouts</button>
-
-<script src="script.js"></script>
-</body>
-
-
 </html>
