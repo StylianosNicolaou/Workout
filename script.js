@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <button id="confirmResetBtn" style="
           background-color: #ff4d4d;
           color: white;
-          padding: 10px 15px;
+          padding: 10px 30px;
           border: none;
           border-radius: 5px;
           font-size: 1rem;
