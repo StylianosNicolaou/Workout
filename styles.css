@@ -41,12 +41,12 @@ h1 {
 
 /* ✅ Responsive Grid for Sections (Always 2 per Row) */
 .section-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex; /* Use flex instead of grid */
+  flex-wrap: wrap; /* Allow wrapping if needed */
   gap: 20px;
+  justify-content: center;
   width: 90%;
   max-width: 1200px;
-  margin: 20px auto;
 }
 
 /* Section Box */
@@ -142,13 +142,17 @@ h1 {
 
 /* ✅ Ensure 2 Sections Per Row on Mobile */
 @media (max-width: 600px) {
-  .section-container {
-    grid-template-columns: repeat(
-      2,
-      1fr
-    ); /* Force two columns even on small screens */
+  .day-content {
+    flex-direction: row; /* Keep sections side by side */
+    flex-wrap: wrap; /* Allow wrapping if needed */
+    justify-content: center;
+  }
+  .section {
+    min-width: 35%; /* Make sections smaller */
+    max-width: 40%;
   }
 }
+
 @media (min-width: 768px) {
   /* Desktop */
   #tit {
@@ -212,20 +216,26 @@ h1 {
 /* Ensure the .day-content displays sections side by side */
 .day-content {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  gap: 40px; /* Space between sections */
-  justify-content: space-between; /* Distribute space evenly */
+  margin-left: 10px;
+  margin-right: 10px;
+  flex-wrap: nowrap; /* Prevent stacking */
+  gap: 10px; /* Reduce space between sections */
+  justify-content: center; /* Center the sections */
   padding-top: 10px;
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   transition: max-height 0.3s ease-out, opacity 0.3s ease-in-out;
+  align-items: flex-start;
+  width: 95%;
 }
 
-/* Make each section take up equal space */
+/* Make each section smaller */
 .section {
-  flex: 1; /* Allows sections to grow evenly */
-  min-width: 300px; /* Prevents sections from becoming too small */
+  flex: 1;
+  margin-left: 0px;
+  min-width: 30%; /* Reduce minimum width */
+  max-width: 35%; /* Reduce max width */
 }
 
 /* Ensure two sections appear next to each other */
@@ -237,6 +247,6 @@ h1 {
 
 /* Expand effect when toggling */
 .workout-day.active .day-content {
-  max-height: 1000px; /* Large enough to fit all content */
+  max-height: 1000px;
   opacity: 1;
 }
