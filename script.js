@@ -546,8 +546,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ✅ Reset Workout Functionality with Confirmation Modal
   window.resetWorkout = function () {
-    // Check if modal already exists
+    // Check if modal already exists to prevent duplicates
     if (!document.getElementById("resetModal")) {
+      // Create modal container
       const modal = document.createElement("div");
       modal.id = "resetModal";
       modal.style.position = "fixed";
@@ -560,34 +561,101 @@ document.addEventListener("DOMContentLoaded", function () {
       modal.style.justifyContent = "center";
       modal.style.alignItems = "center";
       modal.style.zIndex = "1000";
+      modal.style.transition = "opacity 0.3s ease";
 
+      // Create modal content
       modal.innerHTML = `
-      <div id="resetModalContent" style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); width: 300px;">
-        <h2>Reset Workouts?</h2>
-        <p>Are you sure you want to reset all workouts?</p>
-        <button id="confirmResetBtn" style="background-color: #ff4d4d; color: white; padding: 10px 30px; border: none; border-radius: 5px; cursor: pointer;">Yes</button>
-        <button id="cancelResetBtn" style="background-color: #ccc; color: black; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;">Cancel</button>
-      </div>`;
+        <div id="resetModalContent" style="
+          background: white;
+          padding: 20px;
+          border-radius: 10px;
+          text-align: center;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          width: 300px;
+          max-width: 90%;
+        ">
+          <h2 style="margin-bottom: 15px; font-size: 1.5rem; color: #333;">Reset Workouts?</h2>
+          <p style="margin-bottom: 20px; color: #666;">Are you sure you want to reset all workouts?</p>
+          <button id="confirmResetBtn" style="
+            background-color: #ff4d4d;
+            color: white;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background 0.3s;
+          ">Yes</button>
+          <button id="cancelResetBtn" style="
+            background-color: #ccc;
+            color: black;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+          ">Cancel</button>
+        </div>
+      `;
 
+      // Append modal to body
       document.body.appendChild(modal);
     }
 
+    // Get modal elements
     const resetModal = document.getElementById("resetModal");
+    const confirmResetBtn = document.getElementById("confirmResetBtn");
+    const cancelResetBtn = document.getElementById("cancelResetBtn");
+
+    // Show the modal
     resetModal.style.display = "flex";
 
-    document
-      .getElementById("confirmResetBtn")
-      .addEventListener("click", function () {
-        resetModal.style.display = "none";
-        workoutProgressRef.set(null);
-        location.reload();
+    // Remove existing event listeners before adding new ones
+    confirmResetBtn.replaceWith(confirmResetBtn.cloneNode(true));
+    cancelResetBtn.replaceWith(cancelResetBtn.cloneNode(true));
+
+    // Get new button references after cloning
+    const newConfirmResetBtn = document.getElementById("confirmResetBtn");
+    const newCancelResetBtn = document.getElementById("cancelResetBtn");
+
+    // Confirm reset action
+    newConfirmResetBtn.addEventListener("click", function () {
+      resetModal.style.display = "none"; // Hide modal
+
+      console.log("🧹 Resetting Workout...");
+
+      // Set all checkboxes to unchecked
+      document
+        .querySelectorAll('input[type="checkbox"]')
+        .forEach((checkbox) => {
+          checkbox.checked = false;
+
+          // Remove strike-through from text
+          const label = checkbox.nextElementSibling;
+          if (label) {
+            label.classList.remove("strike-through");
+          }
+
+          // Update Firebase (Set all values to false)
+          if (typeof workoutProgressRef !== "undefined") {
+            workoutProgressRef.child(checkbox.id).set(false);
+          }
+        });
+
+      // Remove strike-through from exercise titles
+      document.querySelectorAll(".exercise-item h2").forEach((title) => {
+        title.classList.remove("strike-through");
       });
 
-    document
-      .getElementById("cancelResetBtn")
-      .addEventListener("click", function () {
-        resetModal.style.display = "none";
-      });
+      console.log("✅ Workout Reset Successful");
+    });
+
+    // Cancel reset action
+    newCancelResetBtn.addEventListener("click", function () {
+      resetModal.style.display = "none"; // Hide modal
+    });
   };
 
   // ✅ Generate workouts dynamically
