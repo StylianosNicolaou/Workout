@@ -153,12 +153,66 @@ h1 {
     min-width: 35%; /* Make sections smaller */
     max-width: 40%;
   }
+  .dark-mode-toggle {
+    top: 10px;
+    right: 10px;
+  }
+
+  .toggle-container {
+    width: 60px;
+    height: 30px;
+  }
+
+  .toggle-label {
+    width: 60px;
+    height: 30px;
+  }
+
+  .toggle-circle {
+    width: 28px;
+    height: 28px;
+  }
+
+  .toggle-icon {
+    font-size: 14px;
+  }
+
+  #toggle-dark-mode:checked + .toggle-label .toggle-circle {
+    transform: translateX(30px);
+  }
 }
 
 @media (min-width: 768px) {
   /* Desktop */
   #tit {
     font-size: 6vh;
+  }
+  .dark-mode-toggle {
+    top: 20px;
+    right: 20px;
+  }
+
+  .toggle-container {
+    width: 80px;
+    height: 40px;
+  }
+
+  .toggle-label {
+    width: 80px;
+    height: 40px;
+  }
+
+  .toggle-circle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .toggle-icon {
+    font-size: 18px;
+  }
+
+  #toggle-dark-mode:checked + .toggle-label .toggle-circle {
+    transform: translateX(40px);
   }
 }
 
@@ -203,6 +257,120 @@ h1 {
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
 } */
+
+/* ✅ Neumorphic Dark Mode Toggle */
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ✅ Toggle Container */
+.toggle-container {
+  position: relative;
+  width: 80px;
+  height: 40px;
+}
+
+/* ✅ Hide default checkbox */
+#toggle-dark-mode {
+  display: none;
+}
+
+/* ✅ Neumorphic Toggle Design */
+.toggle-label {
+  display: flex;
+  align-items: center;
+  width: 80px;
+  height: 40px;
+  background: #e0e0e0;
+  border-radius: 50px;
+  box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.4s ease-in-out;
+}
+
+/* ✅ Toggle Circle */
+.toggle-circle {
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease-in-out, background 0.3s ease-in-out;
+}
+
+/* ✅ Sun & Moon Icons */
+.toggle-icon {
+  font-size: 18px;
+  position: absolute;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.sun {
+  color: #ffcc00;
+  opacity: 1;
+}
+
+.moon {
+  color: #fff;
+  opacity: 0;
+}
+
+/* ✅ Dark Mode Active */
+#toggle-dark-mode:checked + .toggle-label {
+  background: #222;
+  box-shadow: inset 5px 5px 10px #111, inset -5px -5px 10px #333;
+}
+
+/* ✅ Move Toggle Knob */
+#toggle-dark-mode:checked + .toggle-label .toggle-circle {
+  transform: translateX(40px);
+  background: #181818;
+}
+
+/* ✅ Show Moon, Hide Sun */
+#toggle-dark-mode:checked + .toggle-label .sun {
+  opacity: 0;
+}
+
+#toggle-dark-mode:checked + .toggle-label .moon {
+  opacity: 1;
+}
+
+/* ✅ Dark Mode Styling */
+body.dark-mode {
+  background-color: #181818;
+  color: rgb(255, 255, 255);
+}
+
+/* ✅ Ensure workout buttons change in dark mode */
+.dark-mode .day-title {
+  background: linear-gradient(to right, #444, #555);
+  color: white;
+}
+
+/* ✅ Toggle Button Dark Mode Effect */
+#toggle-dark-mode:checked + .toggle-label {
+  background: #222;
+  box-shadow: inset 5px 5px 10px #111, inset -5px -5px 10px #333;
+}
+
+/* ✅ Move the toggle circle */
+#toggle-dark-mode:checked + .toggle-label .toggle-circle {
+  transform: translateX(40px);
+  background: #181818;
+}
 
 .day-title {
   display: block;

@@ -328,6 +328,33 @@
 // });
 
 document.addEventListener("DOMContentLoaded", function () {
+  const darkModeToggle = document.getElementById("toggle-dark-mode");
+
+  // ✅ Debugging: Log if JavaScript is detecting the toggle click
+  darkModeToggle.addEventListener("change", function () {
+    console.log("Toggle clicked! Checked:", this.checked);
+  });
+
+  // ✅ Ensure dark mode is applied if previously enabled
+  if (localStorage.getItem("dark-mode") === "enabled") {
+    document.body.classList.add("dark-mode");
+    darkModeToggle.checked = true; // Ensure toggle starts in correct position
+    console.log("Dark mode enabled from storage.");
+  }
+
+  // ✅ Toggle Dark Mode on click
+  darkModeToggle.addEventListener("change", function () {
+    if (darkModeToggle.checked) {
+      document.body.classList.add("dark-mode");
+      localStorage.setItem("dark-mode", "enabled");
+      console.log("Dark Mode Activated");
+    } else {
+      document.body.classList.remove("dark-mode");
+      localStorage.setItem("dark-mode", "disabled");
+      console.log("Dark Mode Deactivated");
+    }
+  });
+
   const container = document.getElementById("workout-container");
 
   // ✅ Initialize Firebase (if needed)
