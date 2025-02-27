@@ -355,10 +355,10 @@ body.dark-mode {
 }
 
 /* ✅ Ensure workout buttons change in dark mode */
-.dark-mode .day-title {
+/* .dark-mode .day-title {
   background: linear-gradient(to right, #444, #555);
   color: white;
-}
+} */
 
 /* ✅ Toggle Button Dark Mode Effect */
 #toggle-dark-mode:checked + .toggle-label {
