@@ -18,22 +18,44 @@ document.addEventListener("DOMContentLoaded", function () {
     const db = firebase.database();
     const workoutProgressRef = db.ref("workoutProgress");
   
-      // ✅ Function: Update Firebase when a checkbox is clicked
-      function updateWorkoutProgress(checkbox) {
-        const checkboxId = checkbox.id;
-        const isChecked = checkbox.checked;
+      // ✅ Function to update Firebase when a checkbox is clicked
+    function updateWorkoutProgress(checkbox) {
+      const checkboxId = checkbox.id;
+      const isChecked = checkbox.checked;
 
-        console.log(`🔥 Updating Firebase: ${checkboxId} -> ${isChecked}`);
-        workoutProgressRef.child(checkboxId).set(isChecked);
+      console.log(`🔥 Updating Firebase: ${checkboxId} -> ${isChecked}`);
 
-        // Apply strike-through effect
-        const label = checkbox.nextElementSibling;
-        label.classList.toggle("strike-through", isChecked);
+      // Update Firebase in real time
+      ((firebase.database()).ref("workoutProgress")).child(checkboxId).set(isChecked);
 
-        // Update exercise state
-        const exerciseItem = checkbox.closest(".exercise-item");
-        updateExerciseStrikeThrough(exerciseItem);
+      // Apply strike-through effect to the individual set
+      const label = checkbox.nextElementSibling;
+      if (isChecked) {
+        label.classList.add("strike-through");
+      } else {
+        label.classList.remove("strike-through");
       }
+
+      // Check if all checkboxes for the exercise are checked
+      const exerciseItem = checkbox.closest(".exercise-item");
+      updateExerciseStrikeThrough(exerciseItem);
+    }
+      // // ✅ Function: Update Firebase when a checkbox is clicked
+      // function updateWorkoutProgress(checkbox) {
+      //   const checkboxId = checkbox.id;
+      //   const isChecked = checkbox.checked;
+
+      //   console.log(`🔥 Updating Firebase: ${checkboxId} -> ${isChecked}`);
+      //   workoutProgressRef.child(checkboxId).set(isChecked);
+
+      //   // Apply strike-through effect
+      //   const label = checkbox.nextElementSibling;
+      //   label.classList.toggle("strike-through", isChecked);
+
+      //   // Update exercise state
+      //   const exerciseItem = checkbox.closest(".exercise-item");
+      //   updateExerciseStrikeThrough(exerciseItem);
+      // }
 
       // ✅ Function: Apply strike-through if all checkboxes in an exercise are checked
       function updateExerciseStrikeThrough(exerciseItem) {
@@ -448,28 +470,28 @@ document.addEventListener("DOMContentLoaded", function () {
 //     });
 //   }
 
-//   // ✅ Function to update Firebase when a checkbox is clicked
-//   function updateWorkoutProgress(checkbox) {
-//     const checkboxId = checkbox.id;
-//     const isChecked = checkbox.checked;
+  // // ✅ Function to update Firebase when a checkbox is clicked
+  // function updateWorkoutProgress(checkbox) {
+  //   const checkboxId = checkbox.id;
+  //   const isChecked = checkbox.checked;
 
-//     console.log(`🔥 Updating Firebase: ${checkboxId} -> ${isChecked}`);
+  //   console.log(`🔥 Updating Firebase: ${checkboxId} -> ${isChecked}`);
 
-//     // Update Firebase in real time
-//     ((firebase.database()).ref("workoutProgress")).child(checkboxId).set(isChecked);
+  //   // Update Firebase in real time
+  //   ((firebase.database()).ref("workoutProgress")).child(checkboxId).set(isChecked);
 
-//     // Apply strike-through effect to the individual set
-//     const label = checkbox.nextElementSibling;
-//     if (isChecked) {
-//       label.classList.add("strike-through");
-//     } else {
-//       label.classList.remove("strike-through");
-//     }
+  //   // Apply strike-through effect to the individual set
+  //   const label = checkbox.nextElementSibling;
+  //   if (isChecked) {
+  //     label.classList.add("strike-through");
+  //   } else {
+  //     label.classList.remove("strike-through");
+  //   }
 
-//     // Check if all checkboxes for the exercise are checked
-//     const exerciseItem = checkbox.closest(".exercise-item");
-//     updateExerciseStrikeThrough(exerciseItem);
-//   }
+  //   // Check if all checkboxes for the exercise are checked
+  //   const exerciseItem = checkbox.closest(".exercise-item");
+  //   updateExerciseStrikeThrough(exerciseItem);
+  // }
 
 //   // ✅ Check if all checkboxes of an exercise are checked and apply strike-through to exercise
 //   function updateExerciseStrikeThrough(exerciseItem) {
