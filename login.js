@@ -1,6 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
-  
-  fetch('/api/firebase-config') // ✅ Fetch config from Vercel API route
+fetch('/api/firebase-config') // ✅ Fetch config from Vercel API route
   .then(response => response.json())
   .then(config => {
     if (!firebase.apps.length) {
@@ -10,11 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
       firebase.app();
     }
 
-    // ✅ Now Firebase services can be used safely
+    // ✅ Define `auth` only after Firebase is initialized
     const auth = firebase.auth();
-  })
-  .catch(error => console.error("❌ Error loading Firebase config:", error));
-  
+
     // ✅ Redirect Logged-In Users to `index.html`
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -22,17 +18,17 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "index.html";
       }
     });
-  
+
     // ✅ Handle Login Form Submission
     const loginForm = document.getElementById("loginForm");
     const loginError = document.getElementById("loginError");
-  
+
     loginForm.addEventListener("submit", function (e) {
       e.preventDefault();
-  
+
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
-  
+
       auth.signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
           console.log("✅ Logged in! Redirecting to index.html...");
@@ -44,5 +40,5 @@ document.addEventListener("DOMContentLoaded", function () {
           loginError.style.color = "red";
         });
     });
-  });
-  
+  })
+  .catch(error => console.error("❌ Error loading Firebase config:", error));

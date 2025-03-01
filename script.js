@@ -10,17 +10,23 @@ document.addEventListener("DOMContentLoaded", function () {
       firebase.app();
     }
 
-    // ✅ Now Firebase services can be used safely
+    // ✅ Now that Firebase is initialized, define `auth`
     const auth = firebase.auth();
+    const db = firebase.database();
+    const workoutProgressRef = db.ref("workoutProgress");
+
+    // ✅ Redirect users to login page if not authenticated
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        console.log("🚀 No user found, redirecting to login...");
+        window.location.href = "login.html";
+      }
+    });
+
+    // ✅ Your other Firebase logic should also go inside this block
   })
   .catch(error => console.error("❌ Error loading Firebase config:", error));
 
-  // ✅ Redirect users to login page if not authenticated
-  auth.onAuthStateChanged((user) => {
-    if (!user) {
-      window.location.href = "login.html"; // Redirect if not logged in
-    }
-  });
 
   const darkModeToggle = document.getElementById("toggle-dark-mode");
 
