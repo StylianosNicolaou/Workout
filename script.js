@@ -1,27 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
   fetch('/api/firebase-config') // ✅ Fetch config from Vercel API route
-    .then(response => response.json())
-    .then(config => {
-      if (!firebase.apps.length) {
-        firebase.initializeApp(config);
-        console.log("🔥 Firebase initialized securely!");
-      } else {
-        firebase.app();
-      }
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(config => {
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config);
+      console.log("🔥 Firebase initialized securely!");
+    } else {
+      firebase.app();
+    }
 
-      // ✅ Define Firebase services after initialization
-      const auth = firebase.auth();
-      const db = firebase.database();
-      const workoutProgressRef = db.ref("workoutProgress");
-
-      // ✅ Redirect users to login page if not authenticated
-      auth.onAuthStateChanged((user) => {
-        if (!user) {
-          console.log("🚀 No user found, redirecting to login...");
-          window.location.href = "login.html";
-        }
-      });
-
+    // ✅ Define Firebase services after initialization
+    const db = firebase.database();
+    const workoutProgressRef = db.ref("workoutProgress");
+  
       // ✅ Function: Update Firebase when a checkbox is clicked
       function updateWorkoutProgress(checkbox) {
         const checkboxId = checkbox.id;
@@ -45,33 +41,30 @@ document.addEventListener("DOMContentLoaded", function () {
           console.warn("⚠️ Skipping updateExerciseStrikeThrough: exerciseItem is null or undefined");
           return; // ✅ Prevents errors if `exerciseItem` is missing
         }
-      
+
         const checkboxes = exerciseItem.querySelectorAll('input[type="checkbox"]');
         const title = exerciseItem.querySelector("h2");
-      
+
         const allChecked = Array.from(checkboxes).every((checkbox) => checkbox.checked);
-        
+
         if (title) {
           title.classList.toggle("strike-through", allChecked);
         }
       }
-      
 
       // ✅ Attach event listeners to checkboxes
       document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
         checkbox.addEventListener("change", function () {
           updateWorkoutProgress(this);
         });
-      
+
         const exerciseItem = checkbox.closest(".exercise-item");
-        
         if (exerciseItem) {
           updateExerciseStrikeThrough(exerciseItem);
         } else {
           console.warn("⚠️ No exercise-item found for checkbox:", checkbox.id);
         }
       });
-      
 
       // ✅ Sync Firebase state with UI
       workoutProgressRef.on("value", (snapshot) => {
@@ -93,23 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
           });
         }
       });
-
-      // ✅ Logout Functionality
-      function logout() {
-        auth.signOut().then(() => {
-          console.log("✅ User logged out.");
-          window.location.href = "login.html";
-        }).catch((error) => {
-          console.error("❌ Logout Error:", error.message);
-        });
-      }
-
-      // ✅ Add Logout Button
-      const logoutButton = document.createElement("button");
-      logoutButton.textContent = "Logout";
-      logoutButton.classList.add("logout-button");
-      logoutButton.addEventListener("click", logout);
-      document.body.appendChild(logoutButton);
 
       // ✅ Generate workouts dynamically
       generateWorkoutSections();
@@ -243,6 +219,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+
 // document.addEventListener("DOMContentLoaded", function () {
 
 //   fetch('/api/firebase-config') // ✅ Fetch config from Vercel API route
