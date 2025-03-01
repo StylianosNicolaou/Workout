@@ -1,3 +1,248 @@
+document.addEventListener("DOMContentLoaded", function () {
+  fetch('/api/firebase-config') // ✅ Fetch config from Vercel API route
+    .then(response => response.json())
+    .then(config => {
+      if (!firebase.apps.length) {
+        firebase.initializeApp(config);
+        console.log("🔥 Firebase initialized securely!");
+      } else {
+        firebase.app();
+      }
+
+      // ✅ Define Firebase services after initialization
+      const auth = firebase.auth();
+      const db = firebase.database();
+      const workoutProgressRef = db.ref("workoutProgress");
+
+      // ✅ Redirect users to login page if not authenticated
+      auth.onAuthStateChanged((user) => {
+        if (!user) {
+          console.log("🚀 No user found, redirecting to login...");
+          window.location.href = "login.html";
+        }
+      });
+
+      // ✅ Function: Update Firebase when a checkbox is clicked
+      function updateWorkoutProgress(checkbox) {
+        const checkboxId = checkbox.id;
+        const isChecked = checkbox.checked;
+
+        console.log(`🔥 Updating Firebase: ${checkboxId} -> ${isChecked}`);
+        workoutProgressRef.child(checkboxId).set(isChecked);
+
+        // Apply strike-through effect
+        const label = checkbox.nextElementSibling;
+        label.classList.toggle("strike-through", isChecked);
+
+        // Update exercise state
+        const exerciseItem = checkbox.closest(".exercise-item");
+        updateExerciseStrikeThrough(exerciseItem);
+      }
+
+      // ✅ Function: Apply strike-through if all checkboxes in an exercise are checked
+      function updateExerciseStrikeThrough(exerciseItem) {
+        if (!exerciseItem) {
+          console.warn("⚠️ Skipping updateExerciseStrikeThrough: exerciseItem is null or undefined");
+          return; // ✅ Prevents errors if `exerciseItem` is missing
+        }
+      
+        const checkboxes = exerciseItem.querySelectorAll('input[type="checkbox"]');
+        const title = exerciseItem.querySelector("h2");
+      
+        const allChecked = Array.from(checkboxes).every((checkbox) => checkbox.checked);
+        
+        if (title) {
+          title.classList.toggle("strike-through", allChecked);
+        }
+      }
+      
+
+      // ✅ Attach event listeners to checkboxes
+      document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+        checkbox.addEventListener("change", function () {
+          updateWorkoutProgress(this);
+        });
+      
+        const exerciseItem = checkbox.closest(".exercise-item");
+        
+        if (exerciseItem) {
+          updateExerciseStrikeThrough(exerciseItem);
+        } else {
+          console.warn("⚠️ No exercise-item found for checkbox:", checkbox.id);
+        }
+      });
+      
+
+      // ✅ Sync Firebase state with UI
+      workoutProgressRef.on("value", (snapshot) => {
+        const data = snapshot.val();
+        console.log("🔥 Firebase Data Updated:", data);
+
+        if (data) {
+          Object.keys(data).forEach((checkboxId) => {
+            const checkbox = document.getElementById(checkboxId);
+            if (checkbox) {
+              checkbox.checked = data[checkboxId];
+
+              const label = checkbox.nextElementSibling;
+              label.classList.toggle("strike-through", checkbox.checked);
+
+              const exerciseItem = checkbox.closest(".exercise-item");
+              updateExerciseStrikeThrough(exerciseItem);
+            }
+          });
+        }
+      });
+
+      // ✅ Logout Functionality
+      function logout() {
+        auth.signOut().then(() => {
+          console.log("✅ User logged out.");
+          window.location.href = "login.html";
+        }).catch((error) => {
+          console.error("❌ Logout Error:", error.message);
+        });
+      }
+
+      // ✅ Add Logout Button
+      const logoutButton = document.createElement("button");
+      logoutButton.textContent = "Logout";
+      logoutButton.classList.add("logout-button");
+      logoutButton.addEventListener("click", logout);
+      document.body.appendChild(logoutButton);
+
+      // ✅ Generate workouts dynamically
+      generateWorkoutSections();
+    })
+    .catch(error => console.error("❌ Error loading Firebase config:", error));
+
+  // ✅ Dark Mode Functionality
+  const darkModeToggle = document.getElementById("toggle-dark-mode");
+
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener("change", function () {
+      document.body.classList.toggle("dark-mode", this.checked);
+      localStorage.setItem("dark-mode", this.checked ? "enabled" : "disabled");
+    });
+
+    if (localStorage.getItem("dark-mode") === "enabled") {
+      document.body.classList.add("dark-mode");
+      darkModeToggle.checked = true;
+    }
+  }
+
+  // ✅ Function to Generate Workout Sections
+  function generateWorkoutSections() {
+    if (typeof workouts === "undefined") {
+      console.error("❌ Workouts data not found! Make sure workouts.js is loaded.");
+      return;
+    }
+
+    const container = document.getElementById("workout-container");
+    container.innerHTML = ""; // Clear previous content
+
+    Object.keys(workouts).forEach((day) => {
+      console.log(`📅 Processing Workout Day: ${day}`, workouts[day]);
+
+      // ✅ Create button for each workout day
+      const dayButton = document.createElement("button");
+      dayButton.className = "day-title";
+      dayButton.textContent = day;
+
+      // ✅ Create workout day content
+      const dayContent = document.createElement("div");
+      dayContent.className = "day-content";
+
+      Object.keys(workouts[day]).forEach((section) => {
+        if (!workouts[day][section] || !Array.isArray(workouts[day][section])) {
+          console.warn(`⚠️ No exercises found for section: ${section} in ${day}`);
+          return;
+        }
+
+        // ✅ Create section div
+        const sectionDiv = document.createElement("div");
+        sectionDiv.className = "section";
+        sectionDiv.id = section;
+
+        // ✅ Section Title
+        const sectionTitle = document.createElement("h2");
+        sectionTitle.textContent = section;
+        sectionDiv.appendChild(sectionTitle);
+
+        // ✅ Exercise List
+        const exerciseList = document.createElement("ul");
+        exerciseList.className = "exercise-list";
+
+        workouts[day][section].forEach((exercise) => {
+          if (!exercise.sets || !Array.isArray(exercise.sets)) {
+            console.warn(`⚠️ No sets found for exercise: ${exercise.name}`);
+            return;
+          }
+
+          // ✅ Create Exercise Item
+          const exerciseItem = document.createElement("li");
+          exerciseItem.className = "exercise-item";
+
+          // ✅ Exercise Title
+          const exerciseTitle = document.createElement("h2");
+          exerciseTitle.textContent = exercise.name;
+          exerciseItem.appendChild(exerciseTitle);
+
+          // ✅ Sub Exercise List (Checkboxes)
+          const subList = document.createElement("ul");
+          subList.className = "sub-exercise-list";
+
+          exercise.sets.forEach((set, index) => {
+            const listItem = document.createElement("li");
+            listItem.className = "sub-exercise-item";
+
+            // ✅ Create Checkbox
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.id = `${day}-${section}-${exercise.name.replace(/\s+/g, "-").toLowerCase()}-set-${index}`;
+            checkbox.addEventListener("change", function () {
+              updateWorkoutProgress(this);
+            });
+
+            // ✅ Set Label
+            const label = document.createElement("span");
+            label.textContent = set.reps;
+
+            listItem.appendChild(checkbox);
+            listItem.appendChild(label);
+            subList.appendChild(listItem);
+          });
+
+          exerciseItem.appendChild(subList);
+          exerciseList.appendChild(exerciseItem);
+        });
+
+        sectionDiv.appendChild(exerciseList);
+        dayContent.appendChild(sectionDiv);
+      });
+
+      // ✅ Append elements to container
+      container.appendChild(dayButton);
+      container.appendChild(dayContent);
+
+      // ✅ Expand/Collapse Functionality
+      dayButton.addEventListener("click", function () {
+        console.log("Toggling:", this.textContent);
+        const isExpanded = getComputedStyle(dayContent).maxHeight !== "0px";
+
+        if (isExpanded) {
+          console.log(this.textContent, "is now collapsed");
+          dayContent.style.maxHeight = "0px";
+          dayContent.style.opacity = "0";
+        } else {
+          console.log(this.textContent, "is now expanded");
+          dayContent.style.maxHeight = dayContent.scrollHeight + "px";
+          dayContent.style.opacity = "1";
+        }
+      });
+    });
+  }
+});
 // document.addEventListener("DOMContentLoaded", function () {
 
 //   fetch('/api/firebase-config') // ✅ Fetch config from Vercel API route
@@ -411,233 +656,3 @@
 //   generateWorkoutSections();
 // });
 
-document.addEventListener("DOMContentLoaded", function () {
-  fetch('/api/firebase-config') // ✅ Fetch config from Vercel API route
-    .then(response => response.json())
-    .then(config => {
-      if (!firebase.apps.length) {
-        firebase.initializeApp(config);
-        console.log("🔥 Firebase initialized securely!");
-      } else {
-        firebase.app();
-      }
-
-      // ✅ Define Firebase services after initialization
-      const auth = firebase.auth();
-      const db = firebase.database();
-      const workoutProgressRef = db.ref("workoutProgress");
-
-      // ✅ Redirect users to login page if not authenticated
-      auth.onAuthStateChanged((user) => {
-        if (!user) {
-          console.log("🚀 No user found, redirecting to login...");
-          window.location.href = "login.html";
-        }
-      });
-
-      // ✅ Function: Update Firebase when a checkbox is clicked
-      function updateWorkoutProgress(checkbox) {
-        const checkboxId = checkbox.id;
-        const isChecked = checkbox.checked;
-
-        console.log(`🔥 Updating Firebase: ${checkboxId} -> ${isChecked}`);
-        workoutProgressRef.child(checkboxId).set(isChecked);
-
-        // Apply strike-through effect
-        const label = checkbox.nextElementSibling;
-        label.classList.toggle("strike-through", isChecked);
-
-        // Update exercise state
-        const exerciseItem = checkbox.closest(".exercise-item");
-        updateExerciseStrikeThrough(exerciseItem);
-      }
-
-      // ✅ Function: Apply strike-through if all checkboxes in an exercise are checked
-      function updateExerciseStrikeThrough(exerciseItem) {
-        const checkboxes = exerciseItem.querySelectorAll('input[type="checkbox"]');
-        const title = exerciseItem.querySelector("h2");
-
-        const allChecked = Array.from(checkboxes).every((checkbox) => checkbox.checked);
-        title.classList.toggle("strike-through", allChecked);
-      }
-
-      // ✅ Attach event listeners to checkboxes
-      document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
-        checkbox.addEventListener("change", function () {
-          updateWorkoutProgress(this);
-        });
-
-        const exerciseItem = checkbox.closest(".exercise-item");
-        updateExerciseStrikeThrough(exerciseItem);
-      });
-
-      // ✅ Sync Firebase state with UI
-      workoutProgressRef.on("value", (snapshot) => {
-        const data = snapshot.val();
-        console.log("🔥 Firebase Data Updated:", data);
-
-        if (data) {
-          Object.keys(data).forEach((checkboxId) => {
-            const checkbox = document.getElementById(checkboxId);
-            if (checkbox) {
-              checkbox.checked = data[checkboxId];
-
-              const label = checkbox.nextElementSibling;
-              label.classList.toggle("strike-through", checkbox.checked);
-
-              const exerciseItem = checkbox.closest(".exercise-item");
-              updateExerciseStrikeThrough(exerciseItem);
-            }
-          });
-        }
-      });
-
-      // ✅ Logout Functionality
-      function logout() {
-        auth.signOut().then(() => {
-          console.log("✅ User logged out.");
-          window.location.href = "login.html";
-        }).catch((error) => {
-          console.error("❌ Logout Error:", error.message);
-        });
-      }
-
-      // ✅ Add Logout Button
-      const logoutButton = document.createElement("button");
-      logoutButton.textContent = "Logout";
-      logoutButton.classList.add("logout-button");
-      logoutButton.addEventListener("click", logout);
-      document.body.appendChild(logoutButton);
-
-      // ✅ Generate workouts dynamically
-      generateWorkoutSections();
-    })
-    .catch(error => console.error("❌ Error loading Firebase config:", error));
-
-  // ✅ Dark Mode Functionality
-  const darkModeToggle = document.getElementById("toggle-dark-mode");
-
-  if (darkModeToggle) {
-    darkModeToggle.addEventListener("change", function () {
-      document.body.classList.toggle("dark-mode", this.checked);
-      localStorage.setItem("dark-mode", this.checked ? "enabled" : "disabled");
-    });
-
-    if (localStorage.getItem("dark-mode") === "enabled") {
-      document.body.classList.add("dark-mode");
-      darkModeToggle.checked = true;
-    }
-  }
-
-  // ✅ Function to Generate Workout Sections
-  function generateWorkoutSections() {
-    if (typeof workouts === "undefined") {
-      console.error("❌ Workouts data not found! Make sure workouts.js is loaded.");
-      return;
-    }
-
-    const container = document.getElementById("workout-container");
-    container.innerHTML = ""; // Clear previous content
-
-    Object.keys(workouts).forEach((day) => {
-      console.log(`📅 Processing Workout Day: ${day}`, workouts[day]);
-
-      // ✅ Create button for each workout day
-      const dayButton = document.createElement("button");
-      dayButton.className = "day-title";
-      dayButton.textContent = day;
-
-      // ✅ Create workout day content
-      const dayContent = document.createElement("div");
-      dayContent.className = "day-content";
-
-      Object.keys(workouts[day]).forEach((section) => {
-        if (!workouts[day][section] || !Array.isArray(workouts[day][section])) {
-          console.warn(`⚠️ No exercises found for section: ${section} in ${day}`);
-          return;
-        }
-
-        // ✅ Create section div
-        const sectionDiv = document.createElement("div");
-        sectionDiv.className = "section";
-        sectionDiv.id = section;
-
-        // ✅ Section Title
-        const sectionTitle = document.createElement("h2");
-        sectionTitle.textContent = section;
-        sectionDiv.appendChild(sectionTitle);
-
-        // ✅ Exercise List
-        const exerciseList = document.createElement("ul");
-        exerciseList.className = "exercise-list";
-
-        workouts[day][section].forEach((exercise) => {
-          if (!exercise.sets || !Array.isArray(exercise.sets)) {
-            console.warn(`⚠️ No sets found for exercise: ${exercise.name}`);
-            return;
-          }
-
-          // ✅ Create Exercise Item
-          const exerciseItem = document.createElement("li");
-          exerciseItem.className = "exercise-item";
-
-          // ✅ Exercise Title
-          const exerciseTitle = document.createElement("h2");
-          exerciseTitle.textContent = exercise.name;
-          exerciseItem.appendChild(exerciseTitle);
-
-          // ✅ Sub Exercise List (Checkboxes)
-          const subList = document.createElement("ul");
-          subList.className = "sub-exercise-list";
-
-          exercise.sets.forEach((set, index) => {
-            const listItem = document.createElement("li");
-            listItem.className = "sub-exercise-item";
-
-            // ✅ Create Checkbox
-            const checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.id = `${day}-${section}-${exercise.name.replace(/\s+/g, "-").toLowerCase()}-set-${index}`;
-            checkbox.addEventListener("change", function () {
-              updateWorkoutProgress(this);
-            });
-
-            // ✅ Set Label
-            const label = document.createElement("span");
-            label.textContent = set.reps;
-
-            listItem.appendChild(checkbox);
-            listItem.appendChild(label);
-            subList.appendChild(listItem);
-          });
-
-          exerciseItem.appendChild(subList);
-          exerciseList.appendChild(exerciseItem);
-        });
-
-        sectionDiv.appendChild(exerciseList);
-        dayContent.appendChild(sectionDiv);
-      });
-
-      // ✅ Append elements to container
-      container.appendChild(dayButton);
-      container.appendChild(dayContent);
-
-      // ✅ Expand/Collapse Functionality
-      dayButton.addEventListener("click", function () {
-        console.log("Toggling:", this.textContent);
-        const isExpanded = getComputedStyle(dayContent).maxHeight !== "0px";
-
-        if (isExpanded) {
-          console.log(this.textContent, "is now collapsed");
-          dayContent.style.maxHeight = "0px";
-          dayContent.style.opacity = "0";
-        } else {
-          console.log(this.textContent, "is now expanded");
-          dayContent.style.maxHeight = dayContent.scrollHeight + "px";
-          dayContent.style.opacity = "1";
-        }
-      });
-    });
-  }
-});
