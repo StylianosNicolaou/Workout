@@ -32,13 +32,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const firebaseConfig = {
     apiKey: "AIzaSyCyZRt0Q3bkg-tno6GNUabRnsieMYPecmM",
     authDomain: "liveworkouttracker.firebaseapp.com",
-    databaseURL:
-      "https://liveworkouttracker-default-rtdb.europe-west1.firebasedatabase.app",
+    databaseURL: "https://liveworkouttracker-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "liveworkouttracker",
-    storageBucket: "liveworkouttracker.appspot.com",
+    storageBucket: "liveworkouttracker.firebasestorage.app",
     messagingSenderId: "608217186734",
-    appId: "1:608217186734:web:c1eb261b47b0a9a163483f",
+    appId: "1:608217186734:web:d6e27c0c52997d4f63483f"
   };
+  
 
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
