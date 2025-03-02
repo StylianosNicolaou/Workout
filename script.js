@@ -1,67 +1,40 @@
 document.addEventListener("DOMContentLoaded", function () {
   fetch('/api/firebase-config') // ✅ Fetch config from Vercel API route
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then(config => {
-    if (!firebase.apps.length) {
-      firebase.initializeApp(config);
-      console.log("🔥 Firebase initialized securely!");
-    } else {
-      firebase.app();
-    }
-
-    // ✅ Define Firebase services after initialization
-    const db = firebase.database();
-    const workoutProgressRef = db.ref("workoutProgress");
-  
-      // ✅ Function to update Firebase when a checkbox is clicked
-    function updateWorkoutProgress(checkbox) {
-      const checkboxId = checkbox.id;
-      const isChecked = checkbox.checked;
-
-      console.log(`🔥 Updating Firebase: ${checkboxId} -> ${isChecked}`);
-
-      // Update Firebase in real time
-      ((firebase.database()).ref("workoutProgress")).child(checkboxId).set(isChecked);
-
-      // Apply strike-through effect to the individual set
-      const label = checkbox.nextElementSibling;
-      if (isChecked) {
-        label.classList.add("strike-through");
+    .then(response => response.json())
+    .then(config => {
+      if (!firebase.apps.length) {
+        firebase.initializeApp(config);
+        console.log("🔥 Firebase initialized securely!");
       } else {
-        label.classList.remove("strike-through");
+        firebase.app();
       }
 
-      // Check if all checkboxes for the exercise are checked
-      const exerciseItem = checkbox.closest(".exercise-item");
-      updateExerciseStrikeThrough(exerciseItem);
-    }
-      // // ✅ Function: Update Firebase when a checkbox is clicked
-      // function updateWorkoutProgress(checkbox) {
-      //   const checkboxId = checkbox.id;
-      //   const isChecked = checkbox.checked;
+      // ✅ Define Firebase services after initialization
+      const db = firebase.database();
+      const workoutProgressRef = db.ref("workoutProgress");
 
-      //   console.log(`🔥 Updating Firebase: ${checkboxId} -> ${isChecked}`);
-      //   workoutProgressRef.child(checkboxId).set(isChecked);
+      // ✅ Function: Update Firebase when a checkbox is clicked
+      function updateWorkoutProgress(checkbox) {
+        const checkboxId = checkbox.id;
+        const isChecked = checkbox.checked;
 
-      //   // Apply strike-through effect
-      //   const label = checkbox.nextElementSibling;
-      //   label.classList.toggle("strike-through", isChecked);
+        console.log(`🔥 Updating Firebase: ${checkboxId} -> ${isChecked}`);
+        workoutProgressRef.child(checkboxId).set(isChecked);
 
-      //   // Update exercise state
-      //   const exerciseItem = checkbox.closest(".exercise-item");
-      //   updateExerciseStrikeThrough(exerciseItem);
-      // }
+        // Apply strike-through effect
+        const label = checkbox.nextElementSibling;
+        label.classList.toggle("strike-through", isChecked);
+
+        // Update exercise state
+        const exerciseItem = checkbox.closest(".exercise-item");
+        updateExerciseStrikeThrough(exerciseItem);
+      }
 
       // ✅ Function: Apply strike-through if all checkboxes in an exercise are checked
       function updateExerciseStrikeThrough(exerciseItem) {
         if (!exerciseItem) {
           console.warn("⚠️ Skipping updateExerciseStrikeThrough: exerciseItem is null or undefined");
-          return; // ✅ Prevents errors if `exerciseItem` is missing
+          return;
         }
 
         const checkboxes = exerciseItem.querySelectorAll('input[type="checkbox"]');
@@ -74,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      // ✅ Attach event listeners to checkboxes
+      // ✅ Attach event listeners to checkboxes AFTER Firebase loads
       document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
         checkbox.addEventListener("change", function () {
           updateWorkoutProgress(this);
@@ -109,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
-      // ✅ Generate workouts dynamically
+      // ✅ Generate workouts dynamically AFTER Firebase loads
       generateWorkoutSections();
     })
     .catch(error => console.error("❌ Error loading Firebase config:", error));
