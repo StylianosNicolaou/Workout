@@ -142,43 +142,134 @@ h1 {
   opacity: 0.7;
 }
 
-/* ✅ Ensure 2 Sections Per Row on Mobile */
+/* ✅ Mobile Optimizations - Make everything smaller to fit both columns */
 @media (max-width: 600px) {
+  /* Reduce body padding */
+  body {
+    padding: 4px;
+  }
+
+  /* Make gym title smaller */
+  #tit {
+    font-size: 1.5vh;
+    left: 5px;
+    letter-spacing: 2px;
+  }
+
+  /* Make day title much smaller to fit everything */
+  .day-title {
+    width: 95%;
+    padding: 6px 8px;
+    font-size: 0.7rem;
+    margin: 4px auto;
+    border-radius: 8px;
+    line-height: 1.2;
+  }
+
+  /* Optimize day content for mobile */
   .day-content {
-    flex-direction: row; /* Keep sections side by side */
-    flex-wrap: wrap; /* Allow wrapping if needed */
-    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 4px;
+    margin: 0 2px;
+    padding-top: 4px;
+    width: 99%;
   }
+
+  /* Reduce spacing between workout containers and add top margin */
+  #workout-container {
+    gap: 8px;
+    margin-top: 50px; /* Push below dark mode toggle */
+  }
+
+  /* Make sections much smaller */
   .section {
-    min-width: 35%; /* Make sections smaller */
-    max-width: 40%;
+    min-width: 48%; /* Almost half width */
+    max-width: 48%;
+    min-height: 250px; /* Reduce height */
+    padding: 6px;
+    border-radius: 4px;
   }
+
+  /* Make section headings smaller */
+  .section h2 {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+
+  /* Make exercise items smaller */
+  .exercise-item {
+    padding: 8px;
+    margin: 4px 0;
+    border-radius: 4px;
+  }
+
+  /* Make exercise titles smaller */
+  .exercise-item h2 {
+    font-size: 0.8rem;
+    margin: 0 0 6px 0;
+  }
+
+  /* Make sub-exercise items smaller */
+  .sub-exercise-item {
+    padding: 4px 6px;
+    margin: 2px 0;
+    font-size: 0.7rem;
+  }
+
+  /* Make checkboxes smaller */
+  .exercise-item input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+  }
+
+  /* Make exercise list more compact */
+  .exercise-list {
+    gap: 4px;
+  }
+
+  /* Make sub-exercise list more compact */
+  .sub-exercise-list {
+    gap: 2px;
+  }
+
+  /* Optimize dark mode toggle for mobile */
   .dark-mode-toggle {
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 8px;
   }
 
   .toggle-container {
-    width: 60px;
-    height: 30px;
+    width: 50px;
+    height: 25px;
   }
 
   .toggle-label {
-    width: 60px;
-    height: 30px;
+    width: 50px;
+    height: 25px;
   }
 
   .toggle-circle {
-    width: 28px;
-    height: 28px;
+    width: 21px;
+    height: 21px;
   }
 
   .toggle-icon {
-    font-size: 14px;
+    font-size: 10px;
   }
 
   #toggle-dark-mode:checked + .toggle-label .toggle-circle {
-    transform: translateX(30px);
+    transform: translateX(25px);
+  }
+
+  /* Make reset button smaller */
+  .reset-button {
+    bottom: 8px;
+    left: 8px;
+    padding: 6px 12px;
+    font-size: 0.7rem;
+    border-radius: 4px;
   }
 }
 
@@ -216,8 +307,121 @@ h1 {
   }
 }
 
+/* Additional mobile optimizations for very small screens */
+@media (max-width: 480px) {
+  /* Even smaller for very small phones */
+  body {
+    padding: 2px;
+  }
+
+  #tit {
+    font-size: 1.2vh;
+    left: 3px;
+    letter-spacing: 1px;
+  }
+
+  .day-title {
+    width: 95%;
+    padding: 4px 6px;
+    font-size: 0.65rem;
+    margin: 2px auto;
+    border-radius: 6px;
+    line-height: 1.1;
+  }
+
+  .day-content {
+    gap: 2px;
+    margin: 0 1px;
+    padding-top: 2px;
+    width: 99.5%;
+  }
+
+  /* Reduce spacing between workout containers even more */
+  #workout-container {
+    gap: 4px;
+    margin-top: 50px; /* Push below dark mode toggle */
+  }
+
+  .section {
+    min-width: 49%;
+    max-width: 49%;
+    min-height: 200px;
+    padding: 4px;
+  }
+
+  .section h2 {
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+  }
+
+  .exercise-item {
+    padding: 6px;
+    margin: 3px 0;
+  }
+
+  .exercise-item h2 {
+    font-size: 0.75rem;
+    margin: 0 0 4px 0;
+  }
+
+  .sub-exercise-item {
+    padding: 3px 4px;
+    margin: 1px 0;
+    font-size: 0.65rem;
+  }
+
+  .exercise-item input[type="checkbox"] {
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+  }
+
+  .exercise-list {
+    gap: 2px;
+  }
+
+  .sub-exercise-list {
+    gap: 1px;
+  }
+
+  .dark-mode-toggle {
+    top: 6px;
+    right: 6px;
+  }
+
+  .toggle-container {
+    width: 45px;
+    height: 22px;
+  }
+
+  .toggle-label {
+    width: 45px;
+    height: 22px;
+  }
+
+  .toggle-circle {
+    width: 18px;
+    height: 18px;
+  }
+
+  .toggle-icon {
+    font-size: 9px;
+  }
+
+  #toggle-dark-mode:checked + .toggle-label .toggle-circle {
+    transform: translateX(23px);
+  }
+
+  .reset-button {
+    bottom: 6px;
+    left: 6px;
+    padding: 4px 8px;
+    font-size: 0.65rem;
+  }
+}
+
 @media (max-width: 767px) {
-  /* Mobile */
+  /* General mobile adjustments */
   #tit {
     font-size: 2vh;
   }
