@@ -1,0 +1,43 @@
+vv:
+    upper:
+        hip thrusts 4 sets (only on the day that the upper is not full)
+        seated cable rows 4 sets
+        seated dips 3 sets
+        single hand seated lat pull down 3 sets
+        chest press 3 sets
+        seated shoulder press 3 sets
+        bench sit ups 3 sets
+        hip adduction 3 sets(superset with below) (only on the day that the upper is not full)
+        hip abduction 3 sets(superset with above) (only on the day that the upper is not full)
+        calf raises 3 sets (on the other upper day, not on the one with hip exercises)
+
+    lower:
+        hip thrusts 4 sets
+        leg press 4 sets
+        leg curls 3 sets
+        leg extensions 3 sets
+        hip adduction 3 sets(superset with below)
+        hip abduction 3 sets(superset with above)
+        lunges(smith machine, switching legs) 3 sets
+        calf raises 3 sets
+
+kk:
+    upper:
+        incline bench press 4 sets
+        seated cable rows 4 sets
+        chest flies 3 sets
+        single hand seated lat pull down 4 sets
+        seated shoulder press 4 sets
+        cable bicep curls 3 sets(superset with below)
+        cable overhead extensions 3 sets(superset with above)
+        cable lateral raises 4 sets
+
+    lower:
+        hack squats 4 sets
+        leg press 4 sets
+        leg curls 3 sets
+        rdl 3 sets
+        hip adduction 2 sets(superset with below)
+        hip abduction 2 sets(superset with above)
+        bulgarian lunges(smith machine) 3 sets
+        calf raises 3 sets
