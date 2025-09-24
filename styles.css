@@ -6,6 +6,7 @@ body {
   background-color: #f4f4f9;
   margin: 0;
   padding: 20px;
+  padding-bottom: 100px; /* Add bottom padding to prevent overlap with reset button */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,6 +52,12 @@ h1 {
   max-width: 1200px;
 }
 
+/* ✅ Workout Container - Ensure proper spacing */
+#workout-container {
+  padding-bottom: 80px; /* Extra padding to prevent overlap with reset button */
+  width: 100%;
+}
+
 /* Section Box */
 .section {
   min-height: 400px;
@@ -58,10 +65,11 @@ h1 {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid transparent;
 }
 
 /* Section Backgrounds */
@@ -180,6 +188,7 @@ h1 {
   #workout-container {
     gap: 8px;
     margin-top: 50px; /* Push below dark mode toggle */
+    padding-bottom: 60px; /* Reduced padding for mobile */
   }
 
   /* Make sections much smaller */
@@ -340,6 +349,7 @@ h1 {
   #workout-container {
     gap: 4px;
     margin-top: 50px; /* Push below dark mode toggle */
+    padding-bottom: 50px; /* Even more reduced padding for very small screens */
   }
 
   .section {
@@ -514,21 +524,24 @@ h1 {
   transition: transform 0.4s ease-in-out, background 0.3s ease-in-out;
 }
 
-/* ✅ Sun & Moon Icons */
+/* ✅ Enhanced Sun & Moon Icons */
 .toggle-icon {
   font-size: 18px;
   position: absolute;
-  transition: opacity 0.3s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sun {
   color: #ffcc00;
   opacity: 1;
+  transform: rotate(0deg);
+  text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
 }
 
 .moon {
-  color: #fff;
+  color: #e2e8f0;
   opacity: 0;
+  transform: rotate(-180deg);
 }
 
 /* ✅ Dark Mode Active */
@@ -552,28 +565,189 @@ h1 {
   opacity: 1;
 }
 
-/* ✅ Dark Mode Styling */
+/* ✅ Enhanced Dark Mode Styling */
 body.dark-mode {
-  background-color: #181818;
-  color: rgb(0, 0, 0);
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  color: #e0e6ed;
+  transition: all 0.3s ease;
 }
 
-/* ✅ Ensure workout buttons change in dark mode */
-/* .dark-mode .day-title {
-  background: linear-gradient(to right, #444, #555);
-  color: white;
-} */
+/* ✅ Dark Mode Component Styling */
 
-/* ✅ Toggle Button Dark Mode Effect */
+/* Dark mode gym title */
+.dark-mode #tit {
+  color: #64b5f6;
+  text-shadow: 0 0 20px rgba(100, 181, 246, 0.3);
+}
+
+/* Dark mode main heading */
+.dark-mode h1 {
+  color: #ff6b9d;
+  text-shadow: 0 0 15px rgba(255, 107, 157, 0.4);
+}
+
+/* Dark mode day titles */
+.dark-mode .day-title {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .day-title:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #f093fb 50%, #667eea 100%);
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* Dark mode sections */
+.dark-mode .section {
+  background: linear-gradient(145deg, #2d3748 0%, #1a202c 100%);
+  border: 1px solid #4a5568;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Dark mode section backgrounds */
+.dark-mode .section#KK {
+  background: linear-gradient(145deg, #2b6cb0 0%, #2c5282 100%);
+  border-color: #3182ce;
+}
+
+.dark-mode .section#VV {
+  background: linear-gradient(145deg, #b83280 0%, #97266d 100%);
+  border-color: #d53f8c;
+}
+
+/* Dark mode section headings */
+.dark-mode .section h2 {
+  color: #f7fafc;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode exercise items */
+.dark-mode .exercise-item {
+  background: linear-gradient(145deg, #2d3748 0%, #1a202c 100%);
+  border: 1px solid #4a5568;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+}
+
+.dark-mode .exercise-item:hover {
+  background: linear-gradient(145deg, #4a5568 0%, #2d3748 100%);
+  border-color: #718096;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: scale(1.02);
+}
+
+/* Dark mode exercise titles */
+.dark-mode .exercise-item h2 {
+  color: #f7fafc;
+}
+
+/* Dark mode checkboxes */
+.dark-mode .exercise-item input[type="checkbox"] {
+  accent-color: #64b5f6;
+  filter: brightness(1.2);
+}
+
+/* Dark mode sub-exercise items */
+.dark-mode .sub-exercise-item {
+  color: #cbd5e0;
+}
+
+/* Dark mode strike-through */
+.dark-mode .strike-through {
+  color: #a0aec0;
+  opacity: 0.6;
+}
+
+/* Dark mode reset button */
+.dark-mode .reset-button {
+  background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+  color: #ffffff;
+  border: 1px solid #fc8181;
+  box-shadow: 0 4px 16px rgba(229, 62, 62, 0.3);
+}
+
+.dark-mode .reset-button:hover {
+  background: linear-gradient(135deg, #fc8181 0%, #e53e3e 100%);
+  box-shadow: 0 6px 20px rgba(229, 62, 62, 0.4);
+}
+
+/* ✅ Dark Mode Modal Styling */
+.dark-mode #resetModalContent {
+  background: linear-gradient(145deg, #2d3748 0%, #1a202c 100%);
+  color: #e2e8f0;
+  border: 1px solid #4a5568;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode #resetModalContent h2 {
+  color: #f7fafc;
+}
+
+.dark-mode #resetModalContent p {
+  color: #cbd5e0;
+}
+
+/* ✅ Dark Mode Focus States */
+.dark-mode .day-title:focus {
+  outline: 2px solid #64b5f6;
+  outline-offset: 2px;
+}
+
+/* ✅ Dark Mode Scrollbar Styling */
+.dark-mode ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+  background: #1a202c;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  border-radius: 4px;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+}
+
+/* ✅ Enhanced Dark Mode Toggle */
 #toggle-dark-mode:checked + .toggle-label {
-  background: #222;
-  box-shadow: inset 5px 5px 10px #111, inset -5px -5px 10px #333;
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  box-shadow: inset 5px 5px 10px #1a202c, inset -5px -5px 10px #4a5568,
+    0 0 20px rgba(100, 181, 246, 0.2);
+  border: 1px solid #4a5568;
 }
 
-/* ✅ Move the toggle circle */
+/* ✅ Enhanced Toggle Circle */
 #toggle-dark-mode:checked + .toggle-label .toggle-circle {
   transform: translateX(40px);
-  background: #181818;
+  background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%);
+  box-shadow: 0 4px 12px rgba(100, 181, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ✅ Enhanced Sun Icon in Dark Mode */
+#toggle-dark-mode:checked + .toggle-label .sun {
+  opacity: 0;
+  transform: rotate(180deg);
+}
+
+/* ✅ Enhanced Moon Icon in Dark Mode */
+#toggle-dark-mode:checked + .toggle-label .moon {
+  opacity: 1;
+  transform: rotate(0deg);
+  color: #64b5f6;
+  text-shadow: 0 0 10px rgba(100, 181, 246, 0.5);
 }
 
 .day-title {
