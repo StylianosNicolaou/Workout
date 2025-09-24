@@ -517,4 +517,117 @@ const workouts = {
       },
     ],
   },
+
+  "Quick Upper": {
+    VV: [
+      {
+        name: "Seated Cable Row",
+        sets: [
+          { reps: "Set 1: 8-10 reps" },
+          { reps: "Set 2: 8-10 reps" },
+          { reps: "Set 3: 8-10 reps" },
+        ],
+      },
+      {
+        name: "Chest Press",
+        sets: [
+          { reps: "Set 1: 8-10 reps" },
+          { reps: "Set 2: 8-10 reps" },
+          { reps: "Set 3: 8-10 reps" },
+        ],
+      },
+      {
+        name: "Seated Shoulder Press",
+        sets: [{ reps: "Set 1: 8-10 reps" }, { reps: "Set 2: 8-10 reps" }],
+      },
+      {
+        name: "Bench Sit-Ups",
+        sets: [{ reps: "Set 1: 12-15 reps" }, { reps: "Set 2: 12-15 reps" }],
+      },
+    ],
+    KK: [
+      {
+        name: "Incline Bench Press",
+        sets: [
+          { reps: "Set 1: 6-8 reps" },
+          { reps: "Set 2: 6-8 reps" },
+          { reps: "Set 3: 6-8 reps" },
+        ],
+      },
+      {
+        name: "Seated Cable Row",
+        sets: [
+          { reps: "Set 1: 8-10 reps" },
+          { reps: "Set 2: 8-10 reps" },
+          { reps: "Set 3: 8-10 reps" },
+        ],
+      },
+      {
+        name: "Single Arm Seated Lat Pulldown",
+        sets: [{ reps: "Set 1: 8-10 reps" }, { reps: "Set 2: 8-10 reps" }],
+      },
+      {
+        name: "Cable Bicep Curl SS Overhead Extension",
+        sets: [
+          { reps: "Set 1: 10-12 reps each" },
+          { reps: "Set 2: 10-12 reps each" },
+        ],
+      },
+    ],
+  },
+
+  "Quick Lower": {
+    VV: [
+      {
+        name: "Hip Thrust",
+        sets: [
+          { reps: "Set 1: 8-10 reps" },
+          { reps: "Set 2: 8-10 reps" },
+          { reps: "Set 3: 8-10 reps" },
+        ],
+      },
+      {
+        name: "Leg Press",
+        sets: [
+          { reps: "Set 1: 8-10 reps" },
+          { reps: "Set 2: 8-10 reps" },
+          { reps: "Set 3: 8-10 reps" },
+        ],
+      },
+      {
+        name: "Leg Curl",
+        sets: [{ reps: "Set 1: 8-10 reps" }, { reps: "Set 2: 8-10 reps" }],
+      },
+      {
+        name: "Calf Raises",
+        sets: [{ reps: "Set 1: 12-15 reps" }, { reps: "Set 2: 12-15 reps" }],
+      },
+    ],
+    KK: [
+      {
+        name: "Hack Squat",
+        sets: [
+          { reps: "Set 1: 6-8 reps" },
+          { reps: "Set 2: 6-8 reps" },
+          { reps: "Set 3: 6-8 reps" },
+        ],
+      },
+      {
+        name: "Seated Leg Curl",
+        sets: [
+          { reps: "Set 1: 8-10 reps" },
+          { reps: "Set 2: 8-10 reps" },
+          { reps: "Set 3: 8-10 reps" },
+        ],
+      },
+      {
+        name: "Bulgarian Lunges (Smith)",
+        sets: [{ reps: "Set 1: 8-10 reps" }, { reps: "Set 2: 8-10 reps" }],
+      },
+      {
+        name: "Calf Raises",
+        sets: [{ reps: "Set 1: 12-15 reps" }, { reps: "Set 2: 12-15 reps" }],
+      },
+    ],
+  },
 };
